@@ -1,0 +1,623 @@
+/* THIS IS THE ORIGINAL DO NOT REPLACE */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFEBAD;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    overflow: visible; /* Ensure overflow is visible */
+}
+
+.logo {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 100px;
+}
+
+.logo svg {
+    position: absolute;
+    transform: translateX(-50%);
+    z-index: -1;
+    width: auto; /* Ensure width is set to auto to scale properly */
+    height: 110%; /* Set height to 100% to fit the container */
+}
+
+.logo h1 {
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.logo .empath {
+    color: #00a2a3;
+    font-size: 56px;
+}
+
+.logo .interact {
+    color: #7b4b94;
+    font-size: 72px;
+}
+
+.logo p {
+    margin: 0;
+    font-size: 18px;
+    color: #7b4b94;
+    position: relative;
+    z-index: 1;
+}
+
+.logo button {
+    padding: 10px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: #7b4b94;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 50px;
+}
+
+.logo button:hover {
+    background-color: #AC64B2;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: #33A6A6;
+    border-radius: 100%;
+    position: absolute;
+}
+
+.dotPos {
+    left: 12px; /* Adjust this value to position correctly over the first "i" */
+    bottom: 78px; 
+}
+/* PDPA.html */
+.pdpa {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 80px;
+    max-height: 480px; /* Adjust height as needed */
+    overflow-y: auto; /* Adds a vertical scrollbar if needed */
+    padding: 20px; /* Optional: adds some padding around the content */
+}
+
+.pdpa h2 {
+    padding: 50px;
+    padding-bottom: 0;
+    margin: 0;
+    font-size: 32px;
+    color: #7b4b94;
+    position: relative;
+    z-index: 1;
+}
+
+.pdpa p {
+    padding: 50px;
+    padding-top: 10px;
+    margin: 0;
+    font-size: 10px;
+    color: #7b4b94;
+    position: relative;
+    z-index: 1;
+}
+/* General container styles */
+#termsContainer {
+    max-width: 800px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+      font-size: 20px;
+      color: #33A6A6;
+      font-weight: 600;
+      align-content: center;
+  }
+  
+/* Style for the checkbox */
+#myCheckbox {
+appearance: none; /* Remove default checkbox styling */
+margin-right: 10px;
+width: 20px;
+height: 20px;
+cursor: pointer;
+background-color: #fff;
+border: 2px solid #33A6A6; /* Border color to match text */
+border-radius: 2px; /* Slightly rounded corners */
+display: inline-block;
+position: relative;
+vertical-align: middle; /* Align with text */
+}
+
+/* Style for checked state */
+#myCheckbox:checked {
+background-color: #33A6A6; /* Background color when checked */
+border-color: #33A6A6; /* Border color when checked */
+}
+
+#myCheckbox:checked::after {
+content: '\2713'; /* Unicode character for a tick mark */
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 16px; /* Adjust size as needed */
+color: white; /* Color of the tick mark */
+line-height: 1;
+}
+
+/* Style for the button */
+#continueButton {
+padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #7b4b94;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 30px;
+    margin-left: 350px;
+    text-align: center;
+    align-content: center;
+}
+
+#continueButton:hover {
+background-color: #AC64B2;
+}
+
+#continueButton:focus {
+outline: none;
+box-shadow: 0 0 0 2px rgba(38, 143, 255, 1); 
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+/* DO NOT CHANGE THIS ANYMORE */
+/* To introduce to parents settings
+Initialise the elements to be centralized, and visible 
+Specific styles for .employment within .exp within .transition
+*/
+.transition, .exp, .employment, .challenges, .gender, .condition {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+    color: #363333;
+    font-size: 32px;
+    font-weight: 500;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* Set element .transition to be hidden */
+.transition.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Element .question design */
+.question {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #7b4b94;
+    text-align: center;
+}
+
+/* For grouping all the choices e.g. bubbles, adjust the options label spacing */
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* DO NOT CHANGE THIS ANYMORE */
+/* .exp */
+.exp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* .bubbles - for yes/no questions */
+.bubble {
+    width: 180px;
+    height: 180px;
+    background-color: #8dcf82;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+.bubble.no {
+    background-color: #faa0a0;
+}
+
+.bubble:hover {
+    transform: scale(1.05);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .bubble {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* DO NOT CHANGE THIS ANYMORE */
+/* .employment*/
+/* .option represents each png */
+.employment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.option h3 {
+    color: #363333;
+    font-size: 28px;
+    padding-bottom: 20px;
+}
+
+/* For clickable image bubble */
+.imageBubble {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F1EEE5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 100%; /* Make the container circular */
+    /* below */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 20px;
+}
+.imageBubble img {
+    max-width: 100%;
+    max-height: 100%;
+    clip-path: circle(100%);
+    object-fit: content;
+}
+
+.imageBubble:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+/* For questions in .challenges */
+.challenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* When the checkbox is checked, apply styles to the sibling .imageBubble div */
+input[type="checkbox"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+.done-button {
+    background-color: #7b4b94;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px; /* Reduced margin */
+    display: block; /* Ensures the button is visible */
+    margin-left: auto; /* Center the button */
+    margin-right: auto; /* Center the button */
+    text-align: center;
+}
+
+.done-button:hover {
+    background-color: #AC64B2;
+}
+
+/* DO NOT DELETE */
+/* child.html */
+/* .gender */
+.gender {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+/* .condition - for ASD/Austism questions */
+.condition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.condition .bubble {
+    width: 180px;
+    height: 180px;
+    background-color: #9BE4E8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #363333;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.condition .bubble.ASD {
+    background-color: #C1CBFE;
+}
+
+.exp.show, .employment.show, .challenges.show, .gender.show, .condition.show {
+    opacity: 1; /* Make visible */
+    pointer-events: auto; /* Enable interaction */
+    display: flex; /* Ensure display is flex when active */
+}
+
+/* home.html */
+h1 {
+    font-size: 52px;
+    font-weight: bold;
+    margin-bottom: 60px;
+    color: #363333;
+    text-align: center;
+}
+
+.yourName {
+    display: inline-block;
+    border: 2px solid #00a2a3; /* Teal border color */
+    border-radius: 120px;
+    padding: 20px 80px;
+    background-color: #00a2a3; /* Teal background color */
+}
+
+#nameInput {
+    border: none; /* Remove border */
+    outline: none; /* Remove outline */
+    font-size: 28px; /* Font size for the input text */
+    color: #00a2a3; /* Text color */
+    background-color: #00a2a3; 
+    width: 160px; /* Set the width */
+    text-align: center; /* Center the text */
+    padding: 5px; /* Optional: Add padding for better spacing */
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none; /* Remove default styling for WebKit browsers */
+    -moz-appearance: none; /* Remove default styling for Mozilla browsers */
+    box-shadow: none; /* Remove box shadow */
+}
+
+#nameInput:focus, #nameInput:active {
+    background-color: #00a2a3; /* Ensure background is transparent */
+    box-shadow: none; /* Remove any default focus shadow */
+}
+
+/* Placeholder settings */
+input::placeholder {
+    font-size: 20px; /* Font size for placeholder text */
+    color: #FFF; /* Placeholder text color */
+    opacity: 0.5; /* Make the placeholder text slightly transparent */
+}
+
+button {
+    margin-top: 110px;
+    background-color: #7b4b94;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #AC64B2;
+}
+/* Loading */
+#loading-screen {
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 1000; /* Ensure it is on top */
+}
+
+#loading-logo {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    animation: spin 2s linear infinite; /* Spinning animation */
+    opacity: 1; /* Initially fully visible */
+    transition: opacity 3s ease-out; /* Fade-out transition */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Style the welcome message */
+
+#welcomeMessage {
+    display: none; /* Initially hidden */
+    opacity: 0; /* Start with opacity 0 */
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    position: fixed; /* Fixed position to allow movement */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1); /* Center and full size */
+    transition: opacity 1s ease-in; /* Fade-in effect */
+    color: #7b4b94;
+    font-weight: 200;
+}
+
+#welcomeMessage span {
+    color: #00a2a3; /* Style the user's name */
+    font-weight: 600;
+    font-size: 52px;
+}
+
+/* Animation for welcome message transition */
+@keyframes moveToCorner {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        top: 60px;
+        left: 120px;
+        transform: translate(0, 0) scale(0.8); /* Move to corner and shrink */
+    }
+}
+/* Feature */
+/* General styles */
+.features {
+    display: none; /* Initially hidden */
+    text-align: center;
+    margin-top: 30px;
+}
+
+.highlight {
+    text-decoration: none; /* Remove underline from the link */
+    font-weight: bold; /* Make the link text bold */
+}
+
+.highlight:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+/* Styling for the different parts of E.I */
+.part1 {
+    color: #7b4b94; /* Purple color for "E." */
+}
+
+.part2 {
+    color: #00a2a3; /* Teal color for "I" */
+}
+
+.features .options {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    flex-wrap: wrap;
+}
+
+.features .options .option h3 {
+    margin-bottom: 0;
+    color: #363333; 
+}
+
+.features .options .option p{
+    font-size: 12px;
+    color: #363333;
+    margin-top: 0; 
+    padding-top: 0; 
+}
+
+
+.features .options .option a {
+    color: #363333;  /* Replace with the desired color code */
+    text-decoration: none; /* Optional: removes underline from links */
+}
+
+/* Example color change to blue */
+.option a {
+    color: #363333; 
+}
