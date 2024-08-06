@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategies</title>
+    <link rel="stylesheet" href="/static/style.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Chat Summary</h1>
+        <div id="summary-content">
+            <p><strong>Problem:</strong> <span id="problem-description"></span></p>
+            <p><strong>Strategy:</strong> <span id="strategy-description"></span></p>
+        </div>
+        <button onclick="window.location.href='/'">Back to Chat</button>
+    </div>
+
+    <script>
+        // Example of how you might set these from session storage or passed data
+        document.getElementById('problem-description').textContent = sessionStorage.getItem('problem');
+        document.getElementById('strategy-description').textContent = sessionStorage.getItem('strategy');
+    </script>
+</body>
+</html>
