@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB Data</title>
+</head>
+<body>
+  <h1>Database Records</h1>
+  <ul>
+    <% data.forEach(item => { %>
+      <li>
+        <p><strong>Name:</strong> <%= item.name %></p>
+        <p><strong>Email:</strong> <%= item.email %></p>
+        <p><strong>Child Gender:</strong> <%= item.child.gender %></p>
+        <p><strong>Child Condition:</strong> <%= item.child.condition %></p>
+        <p><strong>Parents Employment Status:</strong> <%= item.parents.employmentStatus %></p>
+        <p><strong>Challenges:</strong> <%= Array.isArray(item.parents.challenges) ? item.parents.challenges.join(', ') : item.parents.challenges %></p>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>
