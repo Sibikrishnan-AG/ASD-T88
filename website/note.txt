@@ -1,0 +1,82 @@
+<script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Initial transition from .transition to .gender after 5 seconds
+        setTimeout(function() {
+            const transitionSection = document.querySelector('.transition');
+            const genderSection = document.querySelector('.gender');
+    
+            transitionSection.classList.add('hidden');
+            setTimeout(function() {
+                transitionSection.style.display = 'none';
+                genderSection.classList.add('show');
+            }, 1000); // Wait for the transition to complete before hiding
+        }, 5000); // 5000 milliseconds = 5 seconds
+    
+        // Add event listeners to radio buttons in .gender section
+        var genderOptions = document.querySelectorAll('.gender input[type="radio"]');
+        genderOptions.forEach(function(option) {
+            option.addEventListener('change', function() {
+                const genderSection = document.querySelector('.gender');
+                const conditionSection = document.querySelector('.condition');
+    
+                // Apply the same fade out effect as .transition.hidden
+                genderSection.style.transition = 'opacity 1s ease-in-out';
+                conditionSection.style.transition = 'opacity 1s ease-in-out';
+    
+                // Hide the .gender section with a fade out
+                genderSection.classList.remove('show');
+                setTimeout(function() {
+                    genderSection.style.display = 'none';
+    
+                    // Show the .condition section with a fade in
+                    conditionSection.style.display = 'flex';
+                    setTimeout(function() {
+                        conditiontSection.classList.add('show');
+                    }, 10); // Slight delay to ensure display is set before opacity change
+                }, 1000); // Match the 1-second transition time
+            });
+        });
+    
+        // Add event listeners to radio buttons in .condition section
+        var conditionOptions = document.querySelectorAll('.condition input[type="radio"]');
+        conditionOptions.forEach(function(option) {
+            option.addEventListener('change', function() {
+                const conditionSection = document.querySelector('.employment');
+                const challengesSection = document.querySelector('.challenges');
+    
+                // Apply the same fade out effect as .transition.hidden
+                employmentSection.style.transition = 'opacity 1s ease-in-out';
+                challengesSection.style.transition = 'opacity 1s ease-in-out';
+    
+                // Hide the .employment section with a fade out
+                employmentSection.classList.remove('show');
+                setTimeout(function() {
+                    employmentSection.style.display = 'none';
+    
+                    // Show the .challenges section with a fade in
+                    challengesSection.style.display = 'flex';
+                    setTimeout(function() {
+                        challengesSection.classList.add('show');
+                    }, 10); // Slight delay to ensure display is set before opacity change
+                }, 1000); // Match the 1-second transition time
+            });
+        });
+    
+        // Show the Done button if any checkbox in the challenges section is checked
+        var challengeOptions = document.querySelectorAll('.challenges input[type="checkbox"]');
+        var doneButton = document.querySelector('.done-button');
+    
+        challengeOptions.forEach(function(option) {
+            option.addEventListener('change', function() {
+                var anyChecked = Array.from(challengeOptions).some(function(checkbox) {
+                    return checkbox.checked;
+                });
+                if (anyChecked) {
+                    doneButton.style.display = 'block';
+                } else {
+                    doneButton.style.display = 'none';
+                }
+            });
+        });
+    });
+    </script>

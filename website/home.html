@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="welcomeScreen">How should we address you?</h1>
+        <div class="yourName">
+            <input type="text" id="nameInput" placeholder="Enter your name">
+        </div>
+        <br>
+        <button id="doneButton" style="display: none;">Done!</button>
+        
+        <!-- Loading animation -->
+        <div id="loading-screen" style="display: none;">
+            <img src="images/head.png" alt="loading" id="loading-logo">
+        </div>
+
+        <!-- Welcome message -->
+        <div id="welcomeMessage" style="display: none;">
+            <h2>Welcome, <span id="userName"></span></h2>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="feature" value="knowledge">
+                    <div class="imageBubble">
+                        <img src="images/knowledgebase.png" alt="knowledge">
+                    </div>
+                    <h3><a href="#" class="highlight"> <span class="part1">E.</span><span class="part2">I</span></a> Knowledge Base</h3>
+                    <p>Flashcards-style to read valuable <br> 
+                        insights on parenthood with <br> 
+                        a special needs child</p>
+                </label>
+                <label class="option">
+                    <input type="radio" name="status" value="ei">
+                    <div class="imageBubble">
+                        <img src="images/ei.png" alt="ei">
+                    </div>
+                    <h3><a href="#" class="highlight"> <span class="part1">E.</span><span class="part2">I</span></a></h3> 
+                    <p>Talk to your personalized <br>
+                        virtual assistant here!</p>
+                </label>
+                <label class="option">
+                    <input type="radio" name="status" value="settings">
+                    <a href="profile.html" class="highlight">
+                        <div class="imageBubble">
+                            <img src="images/profile.png" alt="settings">
+                        </div>
+                        <h3>Edit your profile</h3>
+                    </a>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

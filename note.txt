@@ -1,0 +1,342 @@
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.option h3 {
+    color: #363333;
+    font-size: 18px;
+    padding-bottom: 20px;
+}
+
+/* For clickable image bubble */
+.imageBubble {
+    width: 110px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F1EEE5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 100%; /* Make the container circular */
+    /* below */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 20px;
+}
+.imageBubble img {
+    max-width: 100%;
+    max-height: 100%;
+    clip-path: circle(100%);
+    object-fit: content;
+
+}
+
+//////////////////////////////////////////////////////////////////////
+
+/* For questions in .challenges */
+.challenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+.challenges .options {
+    display: grid;
+    grid-template-columns: repeat(2, max-content); /* Two columns */
+    column-gap: 40px; /* Space between columns */
+    row-gap: 20px; /* Space between rows */
+    justify-content: center; /* Center the grid horizontally */
+    padding: 10px 0; /* Padding on top and bottom */
+}
+
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* When the checkbox is checked, apply styles to the sibling .imageBubble div */
+input[type="checkbox"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+.done-button {
+    background-color: #7b4b94;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px; /* Reduced margin */
+    display: block; /* Ensures the button is visible */
+    margin-left: auto; /* Center the button */
+    margin-right: auto; /* Center the button */
+    text-align: center;
+}
+
+.done-button:hover {
+    background-color: #AC64B2;
+}
+///////////////////////////
+
+.condition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+.condition .bubble {
+    width: 110px;
+    height: 110px;
+    background-color: #9BE4E8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+.bubble.no {
+    background-color: #faa0a0;
+}
+.bubble:hover {
+    transform: scale(1.05);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .bubble {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+//////////////////////////////////////////////////////////////////////////
+text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Add shadow */
+
+//////////////////////////////////////////////////////////////////////////
+// DO NOT DELETE - pdpa.html
+function toggleButtonVisibility() {
+    var checkBox = document.getElementById("myCheckbox");
+    var continueButton = document.getElementById("continueButton");
+  
+    if (checkBox.checked) {
+      continueButton.style.display = "inline-block"; // Show the button
+    } else {
+      continueButton.style.display = "none"; // Hide the button
+    }
+  }
+  
+  function continueAction() {
+    // Perform the action for continuing, such as navigating to another page
+    window.location.href = "createProfile.html";
+  }
+// ==========================================================================================
+// createProfile.html
+document.addEventListener("DOMContentLoaded", function() {
+    console.log('Document fully loaded.');
+
+    // Initial Transition for Parents Profile Section
+    setTimeout(function() {
+        const transitionParentsSection = document.querySelector('.transition-Parents');
+        const expSection = document.querySelector('.exp');
+
+        transitionParentsSection.classList.add('hidden');
+        setTimeout(function() {
+            transitionParentsSection.style.display = 'none';
+            expSection.classList.add('show');
+            console.log('.exp section is now visible.');
+        }, 1000); // 1 second delay to match the transition timing
+    }, 5000); // 5 seconds delay for the initial display
+
+    // Handle Exp Section Transition
+    var expOptions = document.querySelectorAll('.exp input[type="radio"]');
+    expOptions.forEach(function(option) {
+        option.addEventListener('change', function() {
+            console.log('Selected exp option:', option.value);
+            const expSection = document.querySelector('.exp');
+            const employmentSection = document.querySelector('.employment');
+
+            expSection.classList.remove('show');
+            setTimeout(function() {
+                expSection.style.display = 'none';
+                employmentSection.classList.add('show');
+                console.log('.employment section is now visible.');
+            }, 1000); // 1 second delay to match the transition timing
+        });
+    });
+
+    // Handle Employment Section Transition
+    var employmentOptions = document.querySelectorAll('.employment input[type="radio"]');
+    employmentOptions.forEach(function(option) {
+        option.addEventListener('change', function() {
+            console.log('Selected employment option:', option.value);
+            const employmentSection = document.querySelector('.employment');
+            const challengesSection = document.querySelector('.challenges');
+
+            employmentSection.classList.remove('show');
+            setTimeout(function() {
+                employmentSection.style.display = 'none';
+                challengesSection.classList.add('show');
+                console.log('.challenges section is now visible.');
+            }, 1000); // 1 second delay to match the transition timing
+        });
+    });
+
+    // Make the Done button visible only after clicking on any imageBubble in .challenges
+    var challengeBubbles = document.querySelectorAll('.challenges .imageBubble');
+    var doneButton = document.querySelector('.done-button');
+
+    challengeBubbles.forEach(function(bubble) {
+        bubble.addEventListener('click', function() {
+            doneButton.style.display = 'block';
+            console.log('Done button displayed.');
+        });
+    });
+
+    // Transition from Challenges to Child Profile Section
+    doneButton.addEventListener('click', function() {
+        const challengesSection = document.querySelector('.challenges');
+        const transitionChildSection = document.querySelector('.transition-Child');
+
+        challengesSection.classList.remove('show');
+        setTimeout(function() {
+            challengesSection.style.display = 'none';
+            transitionChildSection.classList.add('show');
+            console.log('.transition-Child section is now visible.');
+
+            // Handle Initial Child Profile Transition
+            setTimeout(function() {
+                const childTransitionSection = document.querySelector('.transition-Child');
+                const genderSection = document.querySelector('.gender');
+
+                childTransitionSection.classList.add('hidden');
+                setTimeout(function() {
+                    childTransitionSection.style.display = 'none';
+                    genderSection.classList.add('show');
+                    console.log('.gender section is now visible.');
+                }, 1000); // 1 second delay to match the transition timing
+            }, 5000); // 5 seconds delay for the initial display of child profile
+        }, 1000); // 1 second delay to match the transition timing
+    });
+
+    // Handle Gender Section Transition
+    var genderOptions = document.querySelectorAll('.gender input[type="radio"]');
+    genderOptions.forEach(function(option) {
+        option.addEventListener('change', function() {
+            console.log('Selected gender option:', option.value);
+            const genderSection = document.querySelector('.gender');
+            const conditionSection = document.querySelector('.condition');
+
+            genderSection.classList.remove('show');
+            setTimeout(function() {
+                genderSection.style.display = 'none';
+                conditionSection.classList.add('show');
+                console.log('.condition section is now visible.');
+            }, 1000); // 1 second delay to match the transition timing
+        });
+    });
+
+    // Handle Condition Section Transition
+    var conditionOptions = document.querySelectorAll('.condition .bubble');
+    conditionOptions.forEach(function(bubble) {
+        bubble.addEventListener('click', function() {
+            console.log('Selected condition:', bubble.innerText.trim());
+            const conditionSection = document.querySelector('.condition');
+
+            conditionSection.classList.remove('show');
+            setTimeout(function() {
+                conditionSection.style.display = 'none';
+                // Perform any further action, like redirecting to another page
+                window.location.href = 'home.html';
+            }, 1000); // 1 second delay to match the transition timing
+        });
+    });
+});
+
+
+
+
+
+// ==========================================================================================
+// home.html
+document.addEventListener('DOMContentLoaded', function () {
+    var input = document.getElementById('nameInput');
+    var doneButton = document.getElementById('doneButton');
+    var loadingScreen = document.getElementById('loading-screen');
+    var loadingLogo = document.getElementById('loading-logo');
+    var welcomeDiv = document.querySelector('.welcome');
+    var welcomeMessage = document.getElementById('welcomeMessage');
+    var userNameSpan = document.getElementById('userName');
+    var features = document.querySelector('.features');
+    var options = document.querySelectorAll('.option');
+
+    // Initially hide the Done button
+    doneButton.style.display = 'none';
+
+    // Show the Done button when the user types something in the input field
+    input.addEventListener('input', function () {
+        if (input.value.trim() !== '') {
+            doneButton.style.display = 'block';
+        } else {
+            doneButton.style.display = 'none';
+        }
+    });
+
+    // Handle the done button click
+    doneButton.addEventListener('click', function () {
+        // Hide the welcome section
+        welcomeDiv.style.display = 'none';
+
+        // Show the loading screen with the spinning logo
+        loadingScreen.style.display = 'flex';
+        loadingLogo.style.opacity = 1;
+
+        // Simulate loading animation for 5 seconds
+        setTimeout(function () {
+            loadingLogo.style.transition = 'opacity 2s ease-out';
+            loadingLogo.style.opacity = 0;
+
+            setTimeout(function () {
+                loadingScreen.style.display = 'none';
+                userNameSpan.textContent = input.value.trim();
+                welcomeMessage.style.display = 'block';
+                welcomeMessage.style.opacity = 1;
+
+                setTimeout(function () {
+                    welcomeMessage.style.animation = 'moveToCorner 2s forwards';
+                }, 500); // Delay the move to the corner
+
+                setTimeout(function () {
+                    features.style.display = 'block';
+                    options.forEach((option, index) => {
+                        setTimeout(function () {
+                            option.style.opacity = 1;
+                        }, index * 500);
+                    });
+                }, 2500); // Wait for the welcome message animation to finish
+            }, 2000); // Wait for the logo to fade out before showing the welcome message
+        }, 5000);
+    });
+});
+

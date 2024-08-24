@@ -1,0 +1,200 @@
+/* DO NOT CHANGE THIS ANYMORE */
+/* .exp */
+.exp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* .bubbles - for yes/no questions */
+.bubble {
+    width: 180px;
+    height: 180px;
+    background-color: #8dcf82;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.bubble.no {
+    background-color: #faa0a0;
+}
+
+.bubble:hover {
+    transform: scale(1.05);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .bubble {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* DO NOT CHANGE THIS ANYMORE */
+/* .employment*/
+/* .option represents each png */
+.employment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+.option {
+    text-align: center;
+    cursor: pointer;
+}
+
+.option h3 {
+    color: black;
+    font-size: 28px;
+    padding-bottom: 20px;
+}
+
+.imageBubble {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F1EEE5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 100%; /* Make the container circular */
+    /* below */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.imageBubble img {
+    max-width: 100%;
+    max-height: 100%;
+    clip-path: circle(100%);
+    object-fit: content;
+}
+
+.imageBubble:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+/* .challenges */
+.challenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+.done-button {
+    background-color: #7b4b94;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 28px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.done-button:hover {
+    background-color: #AC64B2;
+}
+
+.exp.show, .employment.show, .challenges.show, .gender, .condition {
+    opacity: 1; /* Make visible */
+    pointer-events: auto; /* Enable interaction */
+    display: flex; /* Ensure display is flex when active */
+}
+
+/* DO NOT DELETE */
+/* child.html */
+.condition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* .bubbles - for yes/no questions */
+.condition .bubble {
+    width: 180px;
+    height: 180px;
+    background-color: #9BE4E8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.bubble.ASD {
+    background-color: #C1CBFE;
+}
+
+.bubble:hover {
+    transform: scale(1.05);
+}
+
+.gender {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
