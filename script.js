@@ -140,61 +140,64 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 // ==========================================================================================
 // home.html
-document.addEventListener("DOMContentLoaded", function () {
-  var input = document.getElementById("nameInput");
-  var doneButton = document.getElementById("doneButton");
-  var loadingScreen = document.getElementById("loading-screen");
-  var welcomeDiv = document.querySelector(".welcome");
-  var welcomeMessage = document.getElementById("welcomeMessage");
-  var userNameSpan = document.getElementById("userName");
-  var features = document.querySelector(".features");
+document.addEventListener('DOMContentLoaded', function () {
+  var input = document.getElementById('nameInput');
+  var doneButton = document.getElementById('doneButton');
+  var loadingScreen = document.getElementById('loading-screen');
+  var loadingLogo = document.getElementById('loading-logo');
+  var welcomeDiv = document.querySelector('.welcome');
+  var welcomeMessage = document.getElementById('welcomeMessage');
+  var userNameSpan = document.getElementById('userName');
+  var features = document.querySelector('.features');
+  var options = document.querySelectorAll('.option');
 
   // Initially hide the Done button
-  doneButton.style.display = "none";
+  doneButton.style.display = 'none';
 
   // Show the Done button when the user types something in the input field
-  input.addEventListener("input", function () {
-    if (input.value.trim() !== "") {
-      doneButton.style.display = "block";
-    } else {
-      doneButton.style.display = "none";
-    }
+  input.addEventListener('input', function () {
+      if (input.value.trim() !== '') {
+          doneButton.style.display = 'block';
+      } else {
+          doneButton.style.display = 'none';
+      }
   });
 
   // Handle the done button click
-  doneButton.addEventListener("click", function () {
-    // Hide the welcome section and show the loading screen
-    welcomeDiv.style.display = "none";
-    loadingScreen.style.display = "flex";
+  doneButton.addEventListener('click', function () {
+      // Hide the welcome section
+      welcomeDiv.style.display = 'none';
 
-    setTimeout(function () {
-      loadingScreen.style.display = "none";
-      userNameSpan.textContent = input.value.trim();
-      welcomeMessage.style.display = "block";
-      welcomeMessage.style.opacity = 1;
+      // Show the loading screen with the spinning logo
+      loadingScreen.style.display = 'flex';
+      loadingLogo.style.opacity = 1;
 
-      // Show the welcome message for 3 seconds before moving it
+      // Simulate loading animation for 5 seconds
       setTimeout(function () {
-        welcomeMessage.classList.add("moved");
+          loadingLogo.style.transition = 'opacity 2s ease-out';
+          loadingLogo.style.opacity = 0;
 
-        // Show features immediately after welcome message moves to the corner
-        features.classList.add("show");
-        features.style.display = "flex";
-        features.style.opacity = 1;
-      }, 3000); // Show the welcome message for 3 seconds
-    }, 5000); // Show the loading spinner for 5 seconds
+          setTimeout(function () {
+              loadingScreen.style.display = 'none';
+              userNameSpan.textContent = input.value.trim();
+              welcomeMessage.style.display = 'block';
+              welcomeMessage.style.opacity = 1;
+
+              setTimeout(function () {
+                  welcomeMessage.style.animation = 'moveToCorner 2s forwards';
+              }, 500); // Delay the move to the corner
+
+              setTimeout(function () {
+                  features.style.display = 'block';
+                  options.forEach((option, index) => {
+                      setTimeout(function () {
+                          option.style.opacity = 1;
+                      }, index * 500);
+                  });
+              }, 2500); // Wait for the welcome message animation to finish
+          }, 2000); // Wait for the logo to fade out before showing the welcome message
+      }, 5000);
   });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  var features = document.querySelector(".features");
-  features.style.display = "flex"; // Ensure it is shown
-  features.style.opacity = 1; // Ensure full visibility
-
-  // Force redraw
-  features.style.display = "none";
-  features.offsetHeight; // Trigger a reflow, flushing the CSS changes
-  features.style.display = "flex";
 });
 
 // ===========================================================================================
