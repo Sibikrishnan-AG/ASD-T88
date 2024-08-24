@@ -26,12 +26,16 @@ document.addEventListener("DOMContentLoaded", function() {
       const transitionParentsSection = document.querySelector('.transition-Parents');
       const expSection = document.querySelector('.exp');
 
-      transitionParentsSection.classList.add('hidden');
-      setTimeout(function() {
-          transitionParentsSection.style.display = 'none';
-          expSection.classList.add('show');
-          console.log('.exp section is now visible.');
-      }, 1000); // 1 second delay to match the transition timing
+      if (transitionParentsSection && expSection) {
+          transitionParentsSection.classList.add('hidden');
+          setTimeout(function() {
+              transitionParentsSection.style.display = 'none';
+              expSection.classList.add('show');
+              console.log('.exp section is now visible.');
+          }, 1000); // 1 second delay to match the transition timing
+      } else {
+          console.error('Could not find .transition-Parents or .exp section');
+      }
   }, 5000); // 5 seconds delay for the initial display
 
   // Handle Exp Section Transition
@@ -42,12 +46,16 @@ document.addEventListener("DOMContentLoaded", function() {
           const expSection = document.querySelector('.exp');
           const employmentSection = document.querySelector('.employment');
 
-          expSection.classList.remove('show');
-          setTimeout(function() {
-              expSection.style.display = 'none';
-              employmentSection.classList.add('show');
-              console.log('.employment section is now visible.');
-          }, 1000); // 1 second delay to match the transition timing
+          if (expSection && employmentSection) {
+              expSection.classList.remove('show');
+              setTimeout(function() {
+                  expSection.style.display = 'none';
+                  employmentSection.classList.add('show');
+                  console.log('.employment section is now visible.');
+              }, 1000); // 1 second delay to match the transition timing
+          } else {
+              console.error('Could not find .exp or .employment section');
+          }
       });
   });
 
@@ -59,12 +67,16 @@ document.addEventListener("DOMContentLoaded", function() {
           const employmentSection = document.querySelector('.employment');
           const challengesSection = document.querySelector('.challenges');
 
-          employmentSection.classList.remove('show');
-          setTimeout(function() {
-              employmentSection.style.display = 'none';
-              challengesSection.classList.add('show');
-              console.log('.challenges section is now visible.');
-          }, 1000); // 1 second delay to match the transition timing
+          if (employmentSection && challengesSection) {
+              employmentSection.classList.remove('show');
+              setTimeout(function() {
+                  employmentSection.style.display = 'none';
+                  challengesSection.classList.add('show');
+                  console.log('.challenges section is now visible.');
+              }, 1000); // 1 second delay to match the transition timing
+          } else {
+              console.error('Could not find .employment or .challenges section');
+          }
       });
   });
 
@@ -72,38 +84,50 @@ document.addEventListener("DOMContentLoaded", function() {
   var challengeBubbles = document.querySelectorAll('.challenges .imageBubble');
   var doneButton = document.querySelector('.done-button');
 
-  challengeBubbles.forEach(function(bubble) {
-      bubble.addEventListener('click', function() {
-          doneButton.style.display = 'block';
-          console.log('Done button displayed.');
+  if (doneButton) {
+      challengeBubbles.forEach(function(bubble) {
+          bubble.addEventListener('click', function() {
+              doneButton.style.display = 'block';
+              console.log('Done button displayed.');
+          });
       });
-  });
 
-  // Transition from Challenges to Child Profile Section
-  doneButton.addEventListener('click', function() {
-      const challengesSection = document.querySelector('.challenges');
-      const transitionChildSection = document.querySelector('.transition-Child');
+      // Transition from Challenges to Child Profile Section
+      doneButton.addEventListener('click', function() {
+          const challengesSection = document.querySelector('.challenges');
+          const transitionChildSection = document.querySelector('.transition-Child');
 
-      challengesSection.classList.remove('show');
-      setTimeout(function() {
-          challengesSection.style.display = 'none';
-          transitionChildSection.classList.add('show');
-          console.log('.transition-Child section is now visible.');
-
-          // Handle Initial Child Profile Transition
-          setTimeout(function() {
-              const childTransitionSection = document.querySelector('.transition-Child');
-              const genderSection = document.querySelector('.gender');
-
-              childTransitionSection.classList.add('hidden');
+          if (challengesSection && transitionChildSection) {
+              challengesSection.classList.remove('show');
               setTimeout(function() {
-                  childTransitionSection.style.display = 'none';
-                  genderSection.classList.add('show');
-                  console.log('.gender section is now visible.');
+                  challengesSection.style.display = 'none';
+                  transitionChildSection.classList.add('show');
+                  console.log('.transition-Child section is now visible.');
+
+                  // Handle Initial Child Profile Transition
+                  setTimeout(function() {
+                      const childTransitionSection = document.querySelector('.transition-Child');
+                      const genderSection = document.querySelector('.gender');
+
+                      if (childTransitionSection && genderSection) {
+                          childTransitionSection.classList.add('hidden');
+                          setTimeout(function() {
+                              childTransitionSection.style.display = 'none';
+                              genderSection.classList.add('show');
+                              console.log('.gender section is now visible.');
+                          }, 1000); // 1 second delay to match the transition timing
+                      } else {
+                          console.error('Could not find .transition-Child or .gender section');
+                      }
+                  }, 5000); // 5 seconds delay for the initial display of child profile
               }, 1000); // 1 second delay to match the transition timing
-          }, 5000); // 5 seconds delay for the initial display of child profile
-      }, 1000); // 1 second delay to match the transition timing
-  });
+          } else {
+              console.error('Could not find .challenges or .transition-Child section');
+          }
+      });
+  } else {
+      console.error('Done button not found');
+  }
 
   // Handle Gender Section Transition
   var genderOptions = document.querySelectorAll('.gender input[type="radio"]');
@@ -113,12 +137,16 @@ document.addEventListener("DOMContentLoaded", function() {
           const genderSection = document.querySelector('.gender');
           const conditionSection = document.querySelector('.condition');
 
-          genderSection.classList.remove('show');
-          setTimeout(function() {
-              genderSection.style.display = 'none';
-              conditionSection.classList.add('show');
-              console.log('.condition section is now visible.');
-          }, 1000); // 1 second delay to match the transition timing
+          if (genderSection && conditionSection) {
+              genderSection.classList.remove('show');
+              setTimeout(function() {
+                  genderSection.style.display = 'none';
+                  conditionSection.classList.add('show');
+                  console.log('.condition section is now visible.');
+              }, 1000); // 1 second delay to match the transition timing
+          } else {
+              console.error('Could not find .gender or .condition section');
+          }
       });
   });
 
@@ -128,35 +156,49 @@ document.addEventListener("DOMContentLoaded", function() {
       bubble.addEventListener('click', function() {
           console.log('Selected condition:', bubble.innerText.trim());
           const conditionSection = document.querySelector('.condition');
+          const welcomeSection = document.querySelector('.welcome');
+          const nameInput = document.getElementById("nameInput");
 
-          conditionSection.classList.remove('show');
-          setTimeout(function() {
-              conditionSection.style.display = 'none';
-              // Perform any further action, like redirecting to another page
-              window.location.href = 'home.html';
-          }, 1000); // 1 second delay to match the transition timing
+          if (conditionSection && welcomeSection) {
+              conditionSection.classList.remove('show');
+              setTimeout(function() {
+                  conditionSection.style.display = 'none';
+                  if (welcomeSection) {
+                      welcomeSection.classList.add('show');
+                      console.log('.welcome section is now visible.');
+                      
+                      // Check if the name input is accessible after the section is shown
+                      if (nameInput) {
+                          console.log('Name input found:', nameInput);
+                      } else {
+                          console.error('Name input not found.');
+                      }
+                  } else {
+                      console.error('.welcome section not found.');
+                  }
+              }, 1000); // 1 second delay to match the transition timing
+          } else {
+              console.error('.condition or .welcome section not found.');
+          }
       });
   });
 });
+
+// button
+
+
 // ==========================================================================================
-// home.html
-document.addEventListener('DOMContentLoaded', function () {
-  var input = document.getElementById('nameInput');
+// Pre transition to home.html
+document.addEventListener("DOMContentLoaded", function() {
+  var nameInput = document.getElementById('nameInput');
   var doneButton = document.getElementById('doneButton');
-  var loadingScreen = document.getElementById('loading-screen');
-  var loadingLogo = document.getElementById('loading-logo');
-  var welcomeDiv = document.querySelector('.welcome');
-  var welcomeMessage = document.getElementById('welcomeMessage');
-  var userNameSpan = document.getElementById('userName');
-  var features = document.querySelector('.features');
-  var options = document.querySelectorAll('.option');
 
   // Initially hide the Done button
   doneButton.style.display = 'none';
 
   // Show the Done button when the user types something in the input field
-  input.addEventListener('input', function () {
-      if (input.value.trim() !== '') {
+  nameInput.addEventListener('input', function () {
+      if (nameInput.value.trim() !== '') {
           doneButton.style.display = 'block';
       } else {
           doneButton.style.display = 'none';
@@ -165,40 +207,72 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Handle the done button click
   doneButton.addEventListener('click', function () {
-      // Hide the welcome section
-      welcomeDiv.style.display = 'none';
-
-      // Show the loading screen with the spinning logo
-      loadingScreen.style.display = 'flex';
-      loadingLogo.style.opacity = 1;
-
-      // Simulate loading animation for 5 seconds
-      setTimeout(function () {
-          loadingLogo.style.transition = 'opacity 2s ease-out';
-          loadingLogo.style.opacity = 0;
-
-          setTimeout(function () {
-              loadingScreen.style.display = 'none';
-              userNameSpan.textContent = input.value.trim();
-              welcomeMessage.style.display = 'block';
-              welcomeMessage.style.opacity = 1;
-
-              setTimeout(function () {
-                  welcomeMessage.style.animation = 'moveToCorner 2s forwards';
-              }, 500); // Delay the move to the corner
-
-              setTimeout(function () {
-                  features.style.display = 'block';
-                  options.forEach((option, index) => {
-                      setTimeout(function () {
-                          option.style.opacity = 1;
-                      }, index * 500);
-                  });
-              }, 2500); // Wait for the welcome message animation to finish
-          }, 2000); // Wait for the logo to fade out before showing the welcome message
-      }, 5000);
+      var userName = nameInput.value.trim();
+      if (userName !== '') {
+          // Redirect to home.html with the entered name
+          window.location.href = 'home.html?name=' + encodeURIComponent(userName);
+      }
   });
 });
+
+// Post transition to home.html
+document.addEventListener("DOMContentLoaded", function() {
+  var params = new URLSearchParams(window.location.search);
+  var userName = params.get('name');
+
+  var loadingScreen = document.getElementById('loading-screen');
+  var welcomeMessage = document.getElementById('welcomeMessage');
+  var userNameSpan = document.getElementById('userName');
+  var features = document.querySelector('.features');
+  var options = document.querySelectorAll('.features .option');
+
+  // Set the user's name in the welcome message
+  if (userName) {
+      userNameSpan.textContent = userName;
+  }
+
+  // Show loading screen initially
+  loadingScreen.style.display = 'flex';
+  welcomeMessage.style.display = 'none';
+  features.style.display = 'none';
+
+  // Simulate loading spinner for 5 seconds
+  setTimeout(function() {
+      // Fade out the loading screen
+      loadingScreen.style.transition = 'opacity 1s ease-out';
+      loadingScreen.style.opacity = 0;
+
+      setTimeout(function() {
+          loadingScreen.style.display = 'none';
+
+          // Show the welcome message
+          welcomeMessage.style.display = 'block';
+          welcomeMessage.style.opacity = 1;
+
+          // Trigger the moveToCorner animation after a short delay
+          setTimeout(function() {
+              welcomeMessage.classList.add('moved');
+          }, 500);
+
+          // Fade in the features after the welcome message moves to the corner
+          setTimeout(function() {
+              features.style.display = 'flex';
+              features.style.opacity = 1;
+
+              // Fade in each option within the features section
+              options.forEach(function(option, index) {
+                  setTimeout(function() {
+                      option.style.opacity = 1;
+                  }, index * 500); // Stagger the fade-in effect for each option
+              });
+              
+          }, 2500); // Delay to match the welcomeMessage transition
+
+      }, 1000); // Wait for the fade-out transition to complete
+  }, 5000); // Keep the loading screen for 5 seconds
+});
+
+
 
 // ===========================================================================================
 // account.html

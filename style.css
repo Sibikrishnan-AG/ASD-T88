@@ -3,7 +3,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -356,9 +355,8 @@ createProfile.html
 .transition-Parents h1, .transition-Child h1 {
     color: #363333;
     font-size: 28px;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
-    
 }
 
 /* Set element .transition to be hidden
@@ -622,6 +620,7 @@ input[type="checkbox"]:checked + .imageBubble {
     box-sizing: border-box;
     font-weight: 300;
 }
+    
 .condition .bubble.ASD {
     background-color: #C1CBFE;
 }
@@ -632,13 +631,55 @@ input[type="checkbox"]:checked + .imageBubble {
     display: flex; /* Ensure display is flex when active */
 }
 
+.welcome {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh; 
+    width: 100%; 
+    position: relative; 
+    z-index: 10; 
+}
+.welcome.show {
+    display: flex;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+.welcome.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+/* Transition for welcome message moving to the corner */
+#welcomeMessage.moved {
+    animation: moveToCorner 2s forwards;
+}
+@keyframes moveToCorner {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    100% {
+        top: 30px; 
+        left: 20px; 
+        transform: translate(0, 0) scale(0.8); 
+    }
+}
+
 /* ===================================================================================================== */
 /* home.html */
-h1 {
+.welcome h1 {
     font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 40px;
+    font-weight: 600;
     color: #363333;
+    text-align: center;
+    margin-bottom: 20px;
+    display: block;
 }
 
 .yourName {
@@ -715,24 +756,41 @@ input::placeholder {
     100% { transform: rotate(360deg); }
 }
 
+/* at home.html */
 /* Ensure the welcome screen is hidden after Done is clicked */
-.welcome {
+/* .welcome {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    height: 100vh; /* Full height of the viewport */
-    width: 100%; /* Full width */
-    position: relative; /* Stay in the document flow */
-    z-index: 10; /* Ensure it stays on top while visible */
+    height: 100vh; 
+    width: 100%; 
+    position: relative; 
+    z-index: 10; 
     transition: opacity 1s ease-in-out;
 }
 
 .welcome.hidden {
     opacity: 0;
     pointer-events: none;
-}
+} */
+
+/* Keyframes for moving and shrinking the welcome message */
+/* @keyframes moveToCorner {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    100% {
+        top: 30px; 
+        left: 20px; 
+        transform: translate(0, 0) scale(0.8); 
+    }
+} */
+
+/* end of at home.html */
 
 /* Ensure that the welcome message is positioned relative to the container */
 #welcomeMessage {
@@ -754,19 +812,7 @@ input::placeholder {
     animation: moveToCorner 2s forwards;
 }
 
-/* Keyframes for moving and shrinking the welcome message */
-@keyframes moveToCorner {
-    0% {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(1); /* Start at the center */
-    }
-    100% {
-        top: 30px; /* Adjust this value to move it vertically */
-        left: 20px; /* Adjust this value to move it horizontally */
-        transform: translate(0, 0) scale(0.8); /* Shrink the message as it moves */
-    }
-}
+
 #welcomeMessage span {
     color: #00a2a3; /* Style the user's name */
     font-size: 38px;
@@ -774,7 +820,7 @@ input::placeholder {
 
 /* Feature styles */
 .features {
-    display: none;
+    display: none; /* Initially hidden */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -782,22 +828,48 @@ input::placeholder {
     top: 52.5%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 1; /* Make visible immediately */
+    opacity: 1; /* Opacity set to 1 */
     z-index: 10;
-    width: 100%; /* Make sure it takes full width */
-
+    width: 100%;
 }
 
 .features .options {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center the items horizontally */
-    gap: 15px; /* Maintain some gap between the features */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%; /* Ensure the container takes full width */
 }
 
 .features .option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 300px; /* Or adjust based on your design */
+    margin: 0 auto; /* Center the entire option within its parent */
     opacity: 0;
     transition: opacity 1s ease-in-out;
+}
+
+.features .imageBubble {
+    width: 110px; /* Ensure bubble size is consistent */
+    height: 110px;
+    margin: 0 auto; /* Center the bubble within the option */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #F1EEE5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative; /* Ensure position context for children */
+}
+
+.features .option h3, .features .option p {
+    margin-top: 10px; /* Ensure space between bubble and text */
+    max-width: 250px; /* Ensure text width aligns with bubble */
 }
 
 .highlight {
