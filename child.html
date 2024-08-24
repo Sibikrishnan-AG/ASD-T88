@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child Profile</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="transition">
+        <h1>Tell us more about your child!</h1>
+    </div>
+
+    <!-- Child gender -->
+    <div class="gender">
+        <div class="question">
+            <h2>What is your child's gender?</h2>
+        </div>
+        <div class="options">
+            <label class="option">
+                <input type="radio" name="status" value="girl">
+                <div class="imageBubble">
+                    <img src="images/girl.png" alt="girl">
+                </div>
+                <h3>Girl</h3>
+            </label>
+            <label class="option">
+                <input type="radio" name="status" value="boy">
+                <div class="imageBubble">
+                    <img src="images/boy.png" alt="boy">
+                </div>
+                <h3>Boy</h3>
+            </label>
+            <label class="option">
+                <input type="radio" name="status" value="dndisclose">
+                <div class="imageBubble">
+                    <img src="images/dndisclose.png" alt="dndisclose">
+                </div>
+                <h3>Prefer not to say</h3>
+            </label>
+        </div>
+    </div>
+
+    <!-- Child condition -->
+    <div class="condition">
+        <div class="question">
+            <h2>What condition is your child diagnosed with?</h2>
+        </div>
+        <div class="options">
+            <label>
+                <input type="radio" name="option" value="ADHD">
+                <div class="bubble">ADHD</div>
+            </label>
+            <label>
+                <input type="radio" name="option" value="ASD">
+                <div class="bubble ASD">Autism (ASD)</div>
+            </label>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

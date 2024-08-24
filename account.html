@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+<body>
+    <div class="container forms">
+      <!-- Login -->
+      <div class="Loginform">
+        <div class="form-content">
+          <header>Welcome to <span class="part2">Empath</span> <span class="part1">Interact</span></header>
+            <form id="loginForm">
+                <div class="field input-field">
+                    <input type="email" id="email" placeholder="Enter your email" class="input" required>
+                </div>
+                <div class="field input-field">
+                    <input type="password" id="password" placeholder="Enter your password" class="password" required>
+                    <i class='bx bxs-hide hidePW'></i>
+                </div>
+                <div class="field button-field">
+                    <button type="submit">Login</button>
+                </div>
+                <div class="form-link">
+                    <span>Don't have an account? <a href="#" class="link signup-link">Sign Up</a></span>
+                </div>
+                
+                <div id="loginError" style="color: red;"></div>
+
+                <div class="line"></div>
+
+                <div class="g-signin2" data-onsuccess="onSignIn">
+                    <span>Sign up with Google</span>
+                </div>
+            </form>
+        </div>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div class="SignUpform">
+          <div class="form-content">
+              <header>Create Your Account</header>
+              <form>
+                  <div class="field input-field">
+                      <input type="email" placeholder="Enter your email" class="input" required>
+                  </div>
+                  <div class="field input-field">
+                      <input type="password" placeholder="Enter your password" class="password" required>
+                      <i class='bx bxs-hide hidePW'></i>
+                  </div>
+                  <div class="field input-field">
+                      <input type="password" placeholder="Enter your password again" class="password" required>
+                      <i class='bx bxs-hide hidePW'></i>
+                  </div>
+                  <div class="field button-field">
+                      <button type="submit">Sign Up</button>
+                  </div>
+                  <div class="form-link">
+                      <span>Already have an account? <a href="#" class="link login-link">Login</a></span>
+                  </div>
+              </form>
+          </div>
+          <div class="line"></div>
+
+          <div class="g-signin2" data-onsuccess="onSignIn">
+            <span>Sign in with Google</span>
+          </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

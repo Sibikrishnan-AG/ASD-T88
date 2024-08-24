@@ -1,0 +1,905 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Background color outside the iPhone dimensions */
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: 390px; /* iPhone 14 width */
+    height: 844px; /* iPhone 14 height */
+    background-color: #FFEBAD; /* Background color inside the iPhone */
+    border: 5px solid black; /* Optional: Simulate the iPhone's screen border */
+    border-radius: 45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better visibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures no overflow outside the boundaries */
+    position: relative; /* Ensure absolute positioning stays within this frame */
+}
+
+.iphone-content {
+    width: 100%; /* Ensures the content fits within the iPhone container */
+    height: 100%; /* Ensures the content fits within the iPhone container */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 18px; /* Increased padding for more space around the content */
+    box-sizing: border-box;
+}
+/* ===================================================================================================== */
+/* index.html */
+.logo {
+    padding-top: 180px;
+    align-items: center;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 200%; /* Make the image slightly larger than its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the image both horizontally and vertically */
+}
+
+.logo button {
+    padding: 10px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: #7b4b94;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 80px;
+}
+
+.logo button:hover {
+    background-color: #AC64B2;
+}
+
+/* ===================================================================================================== */
+/* pdpa.html */
+.pdpa {
+    padding: 20px;
+    max-height: 100%; /* Ensure the pdpa section fits within the container */
+    overflow-y: auto; /* Enable scrolling */
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pdpa h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+    color: #7b4b94;
+}
+
+.pdpa p {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 10px;
+    color: #7b4b94;
+}
+
+/* Styling for the agreement container*/
+#termsContainer {
+    text-align: center; /* Center text inside the container */
+    margin: 20px auto; /* Center the container within the parent */
+    width: 100%; /* Take up full width of the parent */
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start; /* Align items to the start, keeping the checkbox unaffected */
+    justify-content: flex-start; /* Keep checkbox and label aligned to the left */
+    flex-wrap: wrap; /* Ensure elements wrap if they don't fit on one line */
+    margin: 20px 0;
+}
+
+/* Checkbox design */
+#myCheckbox {
+    appearance: none; /* Remove default checkbox styling */
+    margin-right: 15px;
+    margin-top: 5px;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #33A6A6; /* Border color to match text */
+    border-radius: 2px; /* Slightly rounded corners */
+    display: inline-block;
+    position: relative;
+    vertical-align: middle; /* Align with text */
+}
+
+#myCheckbox:checked {
+    background-color: #33A6A6; /* Background color when checked */
+    border-color: #33A6A6; /* Border color when checked */
+}
+    
+#myCheckbox:checked::after {
+    content: '\2713'; /* Unicode character for a tick mark */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px; /* Adjust size as needed */
+    color: white; /* Color of the tick mark */
+    line-height: 1;
+}
+
+.myCheckboxText {
+    flex: 1; /* Allow the label to take up the remaining space */
+    font-size: 18px;
+    color: #33A6A6;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Button design */
+#continueButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #7b4b94;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 30px auto 0; /* Increase top margin for more space between button and form-check */
+    text-align: center;
+    display: block; /* Ensure block-level display */
+}
+
+#continueButton:hover {
+    background-color: #AC64B2;
+}
+
+#continueButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(38, 143, 255, 1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+/* ===================================================================================================== */
+/* account.html */
+.Loginform {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 280px;
+    width: 100%;
+
+}
+.SignUpform {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 280px;
+    width: 100%;
+    display: none;
+}
+header {
+    font-size: 30px;
+    font-weight: 600;
+    color: #363333;
+    text-align: center;
+}
+form{
+    margin-top: 30px;
+}
+form .field {
+    height: 50px;
+    margin-top: 20px;
+    width: 100%;
+    position: relative;
+}
+
+.forms.show-signup .SignUpform {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.forms.show-signup .Loginform {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.field input {
+    padding: 0 15px;
+    border: 1px solid #CACACA;
+}
+.field input::placeholder {
+    font-size: 12px; /* Font size for placeholder text */
+    color: #888; /* Placeholder text color */
+}
+
+.field button {
+    background-color: #7b4b94;
+    color: white;
+}
+
+.field input, .field button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+.form-link {
+    text-align: center;
+    margin-top: 10px;
+}
+.form-link span, .form-link a {
+    font-size: 14px;
+    font-weight: 400;
+}
+.form a {
+    color: #0171d3;
+    text-decoration: none;
+}
+.form a:hover {
+    text-decoration: underline;
+}
+/* Hide password eye icon */
+.hidePW {
+    position: absolute;
+    font-size: 18px;
+    color: #8b8b8b;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 5px;
+}
+.line {
+    height: 1px;
+    width: 100%;
+    position: relative;
+    background-color: #d4d4d4;
+    margin: 36px 0;
+}
+.line::before {
+    content: 'Or';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFEBAD;
+    color: #363333;
+    padding: 0 15px;
+}
+
+.g-signin2 a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===================================================================================================== */
+/* To introduce to parents and child settings 
+Initialise the elements to be centralized, and visible 
+Specific styles for .employment within .exp within .transition
+
+createProfile.html
+
+
+*/
+/* General styles for sections */
+.transition-Parents, .exp, .employment, .challenges, .transition-Child, .gender, .condition {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;  /* Start hidden */
+    pointer-events: none; /* Disable interactions */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2.5s ease-in-out;
+}
+
+/* Show the section when active */
+.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Hide the section when transitioning out */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Transition for Parents section should be on top initially */
+.transition-Parents {
+    z-index: 20; /* Higher z-index to ensure visibility */
+    opacity: 1; /* Start fully visible */
+    pointer-events: auto;
+}
+
+/* Transition for Child section */
+.transition-Child {
+    z-index: 10; /* Lower z-index to be behind transition-Parents initially */
+}
+
+.transition-Parents h1, .transition-Child h1 {
+    color: #363333;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    
+}
+
+/* Set element .transition to be hidden
+.transition-Parents.hidden, .transition-Child.hidden {
+    opacity: 0;
+    pointer-events: none;
+} */
+
+.question {
+    width: 100%; /* Take up full width of the parent */
+    padding: 0 20px; /* Add padding to ensure space around the text */
+    box-sizing: border-box; /* Ensure padding is included in width */
+    text-align: center; /* Center the text */
+    word-break: break-word; /* Force long words to break and wrap onto the next line */
+    margin-bottom: 20px; /* Add margin to create space below the question */
+}
+
+h2 {
+    color: #7b4b94;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+    overflow-wrap: break-word; /* Wrap long words */
+    word-wrap: break-word;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, max-content); /* Reduce the width of each column */
+    column-gap: 40px; /* Further reduce the gap between columns */
+    row-gap: 20px; /* Maintain row gap */
+    justify-content: center; /* Center the grid horizontally */
+    padding: 10px 0; /* Reduce padding on top and bottom */
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 150px;
+}
+
+h3 {
+    color: #363333;
+    font-size: 22px;
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+
+/* DO NOT CHANGE THIS ANYMORE */
+/* .exp */
+.exp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.exp .options label {
+    margin: 20px; /* Increase this value to add more gap */
+}
+
+/* .bubbles - for yes/no questions */
+.bubble {
+    width: 110px;
+    height: 110px;
+    background-color: #8dcf82;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+.bubble.no {
+    background-color: #faa0a0;
+}
+.bubble:hover {
+    transform: scale(1.05);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .bubble {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* DO NOT CHANGE THIS ANYMORE */
+/* .employment*/
+/* .option represents each png */
+.employment {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+}
+
+/* For clickable image bubble */
+.imageBubble {
+    width: 110px; /* Slightly reduce the bubble size */
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F1EEE5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 100%; /* Keep the container circular */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 10px; /* Adjusted padding for better fit */
+    margin-bottom: 10px;
+}
+
+.imageBubble img {
+    max-width: 100%;
+    max-height: 100%;
+    clip-path: circle(100%);
+    object-fit: contain; /* Contain the image within the bubble */
+}
+
+.imageBubble:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+/* For questions in .challenges */
+.challenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out; /* Match the transition duration */
+    opacity: 0; /* Start hidden */
+    pointer-events: none; /* Disable interaction initially */
+    
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* When the checkbox is checked, apply styles to the sibling .imageBubble div */
+input[type="checkbox"]:checked + .imageBubble {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7b4b94;
+}
+
+.done-button {
+    display: none; /* Initially hide the Done button */
+    background-color: #7b4b94;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.done-button:hover {
+    background-color: #AC64B2;
+}
+
+@media screen and (max-width: 414px) {
+    .employment .options {
+        column-gap: 5px; /* Further reduce gap for smaller screens */
+        row-gap: 15px;
+    }
+
+    .imageBubble {
+        width: 90px;
+        height: 90px; /* Adjust size for smaller screens */
+    }
+}
+
+
+/* DO NOT DELETE */
+/* child.html */
+/* .gender */
+.gender {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+    height: 100vh;
+}
+
+.gender .options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Space between each item */
+}
+
+.gender .options label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* .condition - for ASD/Austism questions */
+.condition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+.condition .bubble {
+    width: 110px;
+    height: 110px;
+    background-color: #9BE4E8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #363333;
+    font-size: 22px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+.condition .bubble.ASD {
+    background-color: #C1CBFE;
+}
+
+.exp.show, .employment.show, .challenges.show, .gender.show, .condition.show {
+    opacity: 1; /* Make visible */
+    pointer-events: auto; /* Enable interaction */
+    display: flex; /* Ensure display is flex when active */
+}
+
+/* ===================================================================================================== */
+/* home.html */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #363333;
+}
+
+.yourName {
+    display: inline-block;
+    border: 1px solid #00a2a3; /* Teal border color */
+    border-radius: 120px;
+    padding: 20px 80px;
+    background-color: #00a2a3; /* Teal background color */
+    margin-bottom: 20px; /* Add some space between the input and button */
+}
+
+#nameInput {
+    border: 1px solid #00a2a3; /* Visible border */
+    outline: none; /* Remove outline */
+    font-size: 24px; /* Font size */
+    color: #000; /* Text color */
+    background-color: #FFF; /* Background color */
+    width: 160px; /* Width */
+    height: 20px;
+    text-align: center; /* Center text */
+    padding: 10px; /* Padding */
+    box-shadow: none; /* No shadow */
+}
+
+#nameInput:focus, #nameInput:active {
+    background-color: #00a2a3; /* Ensure background is consistent */
+    box-shadow: none; /* Remove any default focus shadow */
+}
+
+/* Placeholder settings */
+input::placeholder {
+    font-size: 18px; /* Font size for placeholder text */
+    color: rgba(255, 255, 255, 0.404); /* Placeholder text color */
+}
+
+#doneButton {
+    margin-top: 20px;
+    background-color: #7b4b94;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#doneButton:hover {
+    background-color: #AC64B2;
+}
+
+/* Loading screen styles */
+#loading-screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 2s ease-out;
+}
+
+#loading-logo {
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ensure the welcome screen is hidden after Done is clicked */
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width */
+    position: relative; /* Stay in the document flow */
+    z-index: 10; /* Ensure it stays on top while visible */
+    transition: opacity 1s ease-in-out;
+}
+
+.welcome.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Ensure that the welcome message is positioned relative to the container */
+#welcomeMessage {
+    position: absolute;
+    display: none;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 2s ease, opacity 1s ease-in;
+    color: #7b4b94;
+    font-weight: 600;
+    font-size: 48px;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow */
+}
+
+#welcomeMessage.moved {
+    animation: moveToCorner 2s forwards;
+}
+
+/* Keyframes for moving and shrinking the welcome message */
+@keyframes moveToCorner {
+    0% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1); /* Start at the center */
+    }
+    100% {
+        top: 30px; /* Adjust this value to move it vertically */
+        left: 20px; /* Adjust this value to move it horizontally */
+        transform: translate(0, 0) scale(0.8); /* Shrink the message as it moves */
+    }
+}
+#welcomeMessage span {
+    color: #00a2a3; /* Style the user's name */
+    font-size: 38px;
+}
+
+/* Feature styles */
+.features {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 52.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1; /* Make visible immediately */
+    z-index: 10;
+    width: 100%; /* Make sure it takes full width */
+
+}
+
+.features .options {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center the items horizontally */
+    gap: 15px; /* Maintain some gap between the features */
+}
+
+.features .option {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.highlight {
+    text-decoration: none; /* Remove underline from the link */
+    font-weight: bold; /* Make the link text bold */
+}
+
+.highlight:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+/* Styling for the different parts of E.I */
+.part1 {
+    color: #7b4b94; /* Purple color for "E." */
+}
+
+.part2 {
+    color: #00a2a3; /* Teal color for "I" */
+}
+
+.features .option img {
+    margin: 0 auto; /* Ensure the image is centered within the bubble */
+}
+
+.features .options .option h3 {
+    margin-bottom: 5px;
+    color: #363333; 
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features .options .option p {
+    font-size: 10px;
+    color: #363333;
+    margin-top: 0; 
+    padding-top: 0; 
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features .options .option a {
+    color: #363333;  /* Replace with the desired color code */
+    text-decoration: none; /* Optional: removes underline from links */
+}
+
+.features .option {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+/* ========================================================================== */
+/* Unknown */
+.card {
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.text-purple {
+    color: #7b4b94;
+}
+
+.btn-purple {
+    background-color: #7b4b94;
+    color: white;
+    border-radius: 30px;
+}
+
+.btn-purple:hover {
+    background-color: #AC64B2;
+}
+
+.google-auth {
+    border-radius: 30px;
+    border: 1px solid #7b4b94;
+    color: #363333;
+    font-size: 18px;
+}
+
+.google-auth img {
+    width: 24px;
+    height: 24px;
+}
+
+.form-control {
+    background-color: #00a2a3;
+    color: white;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.form-control::placeholder {
+    color: white;
+    opacity: 0.8;
+}
+
+.separator-line {
+    flex: 1;
+    height: 1px;
+    background-color: #7b4b94;
+}
