@@ -1,14 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Settings</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <div class="container">
-      
-    </div>
-  </body>
+</head>
+<body>
+  <div class="profileContainer">
+    <h1>Edit your profile</h1>
+    <p class="profileDesc">Start customizing your profile now and let E.I know you better!</p>
+    <form action="/submit" method="POST">
+      <ul>
+        <li>
+            <label for="name">Display Name</label>
+            <p><input type="text" id="name" name="name" class="input-field" /></p>
+        </li>
+
+        <li>
+            <label for="email">Email</label>
+            <p><input type="email" id="email" name="email" class="input-field" /></p>
+        </li>
+
+        <li>
+            <label for="password">Password</label>
+            <p><input type="password" id="password" name="password" class="input-field" /></p>
+        </li>
+
+        <li>
+            <label for="employmentStatus">Employment Status</label>
+            <input type="text" id="employmentStatus" name="employmentStatus" class="input-field" />
+        </li>
+
+        <li>
+            <label for="firstTime">First-time Parent?</label>
+            <input type="text" id="firstTime" name="firstTime" class="input-field" />
+        </li>
+
+        <li class="challengesEdit">
+            <p><label for="challenges">My Current Challenges</label></p>
+            <div class="challenge-item">
+                <img id="challengeImg" src="" alt="" />
+                <p><span id="challengeText"></span></p>
+            </div>
+            <!-- <div class="challenge-item">
+                <img id="challengeImg2" src="" alt="" />
+                <p><span id="challengeText2"></span></p>
+            </div>
+            <div class="challenge-item">
+                <img id="challengeImg3" src="" alt="" />
+                <p><span id="challengeText3"></span></p>
+            </div>
+            <div class="challenge-item">
+                <img id="challengeImg4" src="" alt="" />
+                <p><span id="challengeText4"></span></p>
+            </div> -->
+        </li>
+        <li>
+            <label for="childGender">Child's Gender</label>
+            <input type="text" id="childGender" name="childGender" class="input-field" />
+        </li>
+
+        <li>
+            <label for="childCondition">Child's Condition</label>
+            <input type="text" id="childCondition" name="childCondition" class="input-field" />
+        </li>
+      </ul>
+
+      <button type="submit" id="doneButton">Done!</button>        
+
+    </form>
+  </div>
+
+    <script>
+        // Fetch the first data item from your server
+        async function fetchData() {
+    try {
+        // Get the userName from the URL
+        const params = new URLSearchParams(window.location.search);
+        const userName = params.get('name');
+
+        const response = await fetch('/api/data'); // Adjust the URL to your API endpoint
+        const data = await response.json();
+
+        // Find the data item that matches the userName
+        const item = data.find(d => d.name === userName);
+
+        if (item) {
+            console.log(item);
+
+            // Populate the input fields with the user's data
+            document.getElementById('name').value = item.name;
+            document.getElementById('email').value = item.email;
+            document.getElementById('password').value = "******"; // Placeholder for security
+            document.getElementById('employmentStatus').value = item.parents.employmentStatus;
+            document.getElementById('firstTime').value = item.parents.firstTime ? "Yes" : "No";
+
+            // Dynamically add challenges
+            const challengesContainer = document.querySelector('.challengesEdit'); // Container for challenges
+            challengesContainer.innerHTML = ''; // Clear any existing content
+
+            item.parents.challenges.forEach(challenge => {
+                // Create new div for each challenge
+                const challengeItem = document.createElement('div');
+                challengeItem.className = 'challenge-item';
+
+                // Create and append image
+                const challengeImg = document.createElement('img');
+                challengeImg.src = "images/" + challenge + ".png"; // Adjust image path
+                challengeImg.alt = challenge;
+                challengeItem.appendChild(challengeImg);
+
+                // Create and append text
+                const challengeText = document.createElement('p');
+                challengeText.textContent = challenge;
+                challengeItem.appendChild(challengeText);
+
+                // Append the challenge item to the container
+                challengesContainer.appendChild(challengeItem);
+            });
+
+            // Populate other fields
+            document.getElementById('childGender').value = item.child.gender;
+            document.getElementById('childCondition').value = item.child.condition;
+        } else {
+            console.error('No matching user found');
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+
+
+        // Call fetchData when the page loads
+        window.onload = fetchData;
+
+        async function saveProfile() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value; // Only if you're sending password (be cautious)
+            const employmentStatus = document.getElementById('employmentStatus').value;
+            const firstTime = document.getElementById('firstTime').value.toLowerCase() === 'yes';
+            const challenges = [
+                document.getElementById('challengeText1').textContent,
+                document.getElementById('challengeText2').textContent
+            ];
+            const childGender = document.getElementById('childGender').value;
+            const childCondition = document.getElementById('childCondition').value;
+
+            const updatedProfile = {
+                name,
+                email,
+                password,
+                employmentStatus,
+                firstTime,
+                challenges,
+                childGender,
+                childCondition
+            };
+
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedProfile),
+                });
+
+                if (response.ok) {
+                    window.location.href = 'home.html'; // Redirect to homepage after successful save
+                } else {
+                    console.error('Error saving profile:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error saving profile:', error);
+            }
+        }
+    </script>
+</body>
 </html>

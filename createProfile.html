@@ -10,7 +10,10 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="container">
+    
+    <form id="profileForm" onsubmit="createProfile(event)" method="POST">
+        <div class="container">
+
         <!-- Parents Profile Section -->
         <div class="transition-Parents">
             <h1>Let's get to know you<br>first!</h1>
@@ -38,28 +41,28 @@
             </div>
             <div class="options">
                 <label class="option">
-                    <input type="radio" name="status" value="fulltime">
+                    <input type="radio" name="status" value="Full-time">
                     <div class="imageBubble">
                         <img src="images/fulltime.png" alt="fulltime">
                     </div>
                     <h3>Full-time</h3>
                 </label>
                 <label class="option">
-                    <input type="radio" name="status" value="partime">
+                    <input type="radio" name="status" value="Part-time">
                     <div class="imageBubble">
                         <img src="images/partime.png" alt="partime">
                     </div>
                     <h3>Part-time</h3>
                 </label>
                 <label class="option">
-                    <input type="radio" name="status" value="sahp">
+                    <input type="radio" name="status" value="NIL">
                     <div class="imageBubble">
                         <img src="images/sahp.png" alt="sahp">
                     </div>
                     <h3>Stay at home<br>parent</h3>
                 </label>
                 <label class="option">
-                    <input type="radio" name="status" value="dndisclose">
+                    <input type="radio" name="status" value="Prefer not to say">
                     <div class="imageBubble">
                         <img src="images/dndisclose.png" alt="dndisclose">
                     </div>
@@ -74,35 +77,35 @@
             </div>
             <div class="options">
                 <label class="option">
-                    <input type="checkbox" name="status" value="emotion">
+                    <input type="checkbox" name="challenges" value="Emotional & Mental Distress">
                     <div class="imageBubble">
-                        <img src="images/mental.png" alt="emotion">
+                        <img src="images/Emotional & Mental Distress.png" alt="emotion">
                     </div>
                     <h3>Emotional & mental<br>distress</h3>
                 </label>
                 <label class="option">
-                    <input type="checkbox" name="status" value="parenthood">
+                    <input type="checkbox" name="challenges" value="Parenthood">
                     <div class="imageBubble">
-                        <img src="images/parenthood.png" alt="parenthood">
+                        <img src="images/Parenthood.png" alt="parenthood">
                     </div>
                     <h3>Parenthood</h3>
                 </label>
                 <label class="option">
-                    <input type="checkbox" name="status" value="support">
+                    <input type="checkbox" name="challenges" value="Lack Of Accessible Support">
                     <div class="imageBubble">
-                        <img src="images/support.png" alt="support">
+                        <img src="images/Lack Of Accessible Support.png" alt="support">
                     </div>
                     <h3>Lack of accessible<br>support from<br>community</h3>
                 </label>
                 <label class="option">
-                    <input type="checkbox" name="status" value="social">
+                    <input type="checkbox" name="challenges" value="Social Discrimination & Isolation">
                     <div class="imageBubble">
-                        <img src="images/social.png" alt="social">
+                        <img src="images/Social Discrimination & Isolation.png" alt="social">
                     </div>
                     <h3>Social discrimination<br>& isolation</h3>
                 </label>
-            </div>
-            <button class="done-button">Done!</button>
+            </div>            
+            <button type="button" class="done-button">Next!</button>
         </div>
 
         <!-- Child Profile Section -->
@@ -161,10 +164,55 @@
             <div class="yourName">
                 <input type="text" id="nameInput" placeholder="Enter your name">
             </div>
-            <button id="doneButton">Done!</button>
+            <button type="submit" id="doneButton">Done!</button>
         </div>
 
+
     </div>
+</form>
+
+    <script>
+        
+        async function createProfile(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('nameInput').value.trim();
+    const employmentStatus = document.querySelector('input[name="status"]:checked')?.value;
+    const firstTime = document.querySelector('input[name="option"]:checked')?.value === 'yes';
+    const challenges = Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(challenge => challenge.value);
+    const childGender = document.querySelector('input[name="child-gender"]:checked')?.value;
+    const childCondition = document.querySelector('input[name="child-condition"]:checked')?.value;
+
+    const updatedProfile = {
+        name,
+        employmentStatus,
+        firstTime,
+        challenges,
+        childGender,
+        childCondition
+    };
+
+    try {
+        const response = await fetch('/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedProfile),
+        });
+
+        if (response.ok) {
+            window.location.href = 'home.html'; // Redirect to homepage after successful save
+        } else {
+            console.error('Error saving profile:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error saving profile:', error);
+    }
+}
+
+   
+    </script>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="js/bootstrap.bundle.min.js"></script>

@@ -975,3 +975,90 @@ input::placeholder {
     height: 1px;
     background-color: #7b4b94;
 }
+
+.profileContainer ul{
+    list-style-type: none;
+    padding: 0px 30px 0px 30px;
+}
+
+.profileContainer li {
+    padding: 0px 0px 10px 0px;
+}
+
+.profileContainer h1 {
+    text-align: left;
+    font-size: 35px;
+    text-shadow: 2px 2px 2px #575654;
+    color: #543786;
+    margin: 0;
+    padding: 30px 30px 0px 30px;
+}
+
+.profileDesc {
+    font-size: 14px;
+    padding: 0px 30px 0px 30px;
+}
+
+.profileContainer label {
+    color: #309999;
+    text-shadow: 1px 1px 1px #575654;
+
+}
+
+.profileContainer #name, #email, #password {
+    width: 90%;
+}
+
+.profileContainer #employmentStatus, #firstTime, #childGender, #childCondition {
+    float: right;
+    margin-right: 30px;
+}
+
+.profileContainer button {
+    display: block;
+    margin: 20px auto; /* Centers the button horizontally */
+    padding: 10px 20px; /* Adds some padding to the button */
+    background-color: #543786; /* Background color for the button */
+    color: white; /* Text color for the button */
+    border: none; /* Removes the default border */
+    border-radius: 5px; /* Rounds the corners of the button */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.profileContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.challengesEdit {
+    margin-top: 10px;
+}
+
+.challengesEdit .challenge-item{
+    text-align: center;
+    width: 40%;
+    display: inline-grid;
+    margin: 10px;
+}
+
+.challengesEdit .challenge-item img{
+    width: 100%;
+    height: auto;
+}
+
+.challengesEdit .challenge-item p{
+    font-size: 13px;
+}
+
+.challengesEdit .challenge-item span{
+    font-size: 13px;
+}
+
+#profileButton {
+    text-decoration: none;
+    border: 0px;
+    background: none;
+}
