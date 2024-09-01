@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <form id="profileForm" onsubmit="createProfile(event)" method="POST">
+        <div class="container">
+
+        <!-- Parents Profile Section -->
+        <div class="transition-Parents">
+            <h1>Let's get to know you<br>first!</h1>
+        </div>
+
+        <div class="exp">
+            <div class="question">
+                <h2>Are you a first-time parent/caregiver<br>of a special needs child?</h2>
+            </div>
+            <div class="options">
+                <label>
+                    <input type="radio" name="option" value="yes">
+                    <div class="bubble">Yes</div>
+                </label>
+                <label>
+                    <input type="radio" name="option" value="no">
+                    <div class="bubble no">No</div>
+                </label>
+            </div>
+        </div>
+
+        <div class="employment">
+            <div class="question">
+                <h2>What is your employment status?</h2>
+            </div>
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="status" value="Full-time">
+                    <div class="imageBubble">
+                        <img src="images/fulltime.png" alt="Full-time">
+                    </div>
+                    <h3>Full-time</h3>
+                </label>
+                <label class="option">
+                    <input type="radio" name="status" value="Part-time">
+                    <div class="imageBubble">
+                        <img src="images/partime.png" alt="Part-time">
+                    </div>
+                    <h3>Part-time</h3>
+                </label>
+                <label class="option">
+                    <input type="radio" name="status" value="Stay-at-home parent">
+                    <div class="imageBubble">
+                        <img src="images/sahp.png" alt="Stay-at-home parent">
+                    </div>
+                    <h3>Stay-at-home<br>parent</h3>
+                </label>
+                <label class="option">
+                    <input type="radio" name="status" value="Prefer not to say">
+                    <div class="imageBubble">
+                        <img src="images/dndisclose.png" alt="Prefer not to say">
+                    </div>
+                    <h3>Prefer not to say</h3>
+                </label>
+            </div>
+        </div>
+
+        <div class="challenges">
+            <div class="question">
+                <h2>What challenges are you facing right now? (Select all that applies)</h2>
+            </div>
+            <div class="options">
+                <label class="option">
+                    <input type="checkbox" name="challenges" value="Emotional & Mental Distress">
+                    <div class="imageBubble">
+                        <img src="images/mental.png" alt="emotion">
+                    </div>
+                    <h3>Emotional & mental<br>distress</h3>
+                </label>
+                <label class="option">
+                    <input type="checkbox" name="challenges" value="Parenthood">
+                    <div class="imageBubble">
+                        <img src="images/parenthood.png" alt="parenthood">
+                    </div>
+                    <h3>Parenthood</h3>
+                </label>
+                <label class="option">
+                    <input type="checkbox" name="challenges" value="Lack Of Accessible Support">
+                    <div class="imageBubble">
+                        <img src="images/support.png" alt="support">
+                    </div>
+                    <h3>Lack of accessible<br>support from<br>community</h3>
+                </label>
+                <label class="option">
+                    <input type="checkbox" name="challenges" value="Social Discrimination & Isolation">
+                    <div class="imageBubble">
+                        <img src="images/social.png" alt="social">
+                    </div>
+                    <h3>Social discrimination<br>& isolation</h3>
+                </label>
+            </div>            
+            <button type="button" class="done-button">Next!</button>
+        </div>
+
+        <!-- Child Profile Section -->
+        <div class="transition-Child">
+            <h1>Tell us more about<br>your child!</h1>
+        </div>
+
+        <div class="gender">
+            <div class="question">
+                <h2>What is your child's gender?</h2>
+            </div>
+            <div class="options">
+                <label>
+                    <input type="radio" name="child-gender" value="Girl">
+                    <div class="imageBubble">
+                        <img src="images/girl.png" alt="Girl">
+                    </div>
+                    <h3>Girl</h3>
+                </label>
+                <label>
+                    <input type="radio" name="child-gender" value="Boy">
+                    <div class="imageBubble">
+                        <img src="images/boy.png" alt="Boy">
+                    </div>
+                    <h3>Boy</h3>
+                </label>
+                <label>
+                    <input type="radio" name="child-gender" value="Prefer not to say">
+                    <div class="imageBubble">
+                        <img src="images/dndisclose.png" alt="Prefer not to say">
+                    </div>
+                    <h3>Prefer not to say</h3>
+                </label>
+            </div>
+        </div>
+
+        <div class="condition">
+            <div class="question">
+                <h2>What condition is your child<br>diagnosed with?</h2>
+            </div>
+            <div class="options">
+                <label>
+                    <input type="radio" name="child-condition" value="ADHD">
+                    <div class="bubble">ADHD</div>
+                </label>
+                <label>
+                    <input type="radio" name="child-condition" value="Autism (ASD)">
+                    <div class="bubble ASD">Autism (ASD)</div>
+                </label>
+            </div>
+        </div>
+
+         <!-- Welcome Section -->
+         <div class="welcome">
+            <h1>How should we address you?</h1>
+            <div class="yourName">
+                <input type="text" id="nameInput" placeholder="Enter your name">
+            </div>
+            <button type="submit" id="doneButton">Done!</button>
+        </div>
+
+
+    </div>
+</form>
+
+    <script>
+        
+        async function createProfile(event) {
+            event.preventDefault(); // Prevent the default form submission
+        
+            const name = document.getElementById('nameInput').value.trim();
+            const employmentStatus = document.querySelector('input[name="status"]:checked')?.value;
+            const firstTime = document.querySelector('input[name="option"]:checked')?.value === 'yes';
+            const challenges = Array.from(document.querySelectorAll('input[name="challenges"]:checked')).map(challenge => challenge.value);
+            const childGender = document.querySelector('input[name="child-gender"]:checked')?.value;
+            const childCondition = document.querySelector('input[name="child-condition"]:checked')?.value;
+        
+            const updatedProfile = {
+                name,
+                employmentStatus,
+                firstTime,
+                challenges,
+                childGender,
+                childCondition
+            };
+        
+            // Store the selected challenges and other profile data in localStorage
+            localStorage.setItem('profileData', JSON.stringify(updatedProfile));
+        
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updatedProfile),
+                });
+        
+                if (response.ok) {
+                    window.location.href = 'home.html'; // Redirect to homepage after successful save
+                } else {
+                    console.error('Error saving profile:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error saving profile:', error);
+            }
+        }
+        
+
+   
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Settings</title>
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+      <div class="iphone-content">
+        <h1>Settings</h1>
+        <div class="profileline"></div>
+  
+        <!-- Tab Navigation -->
+        <div class="tabs">
+          <div class="tab active">My profile</div>
+          <div class="tab">My Account</div>
+        </div>
+  
+        <!-- Tab Content: Profile Info -->
+        <div class="tab-content active" id="profileTab">
+          <form action="/submit" method="POST">
+
+            <h3 for="name">Display Name</h3>
+            <input type="text" id="name" name="name" class="input-field" />
+
+            <h3 for="employmentStatus">My Employment Status</h3>
+            <input type="text" id="employmentStatus" name="employmentStatus" class="input-field" />
+
+            <h3 for="firstTime">Experience as caregiver</h3>
+            <input type="text" id="firstTime" name="firstTime" class="input-field" />
+
+            <h3 for="challengesContainer">My Current Challenges</h3>
+            <div class="challenge-options" id="challengesContainer">
+              <!-- Checkboxes will be dynamically populated here -->
+            </div>
+
+            <h3 for="childGender">Child's Gender</h3>
+            <input type="text" id="childGender" name="childGender" class="input-field" />
+
+            <h3 for="childCondition">Child's Condition</h3>
+            <input type="text" id="childCondition" name="childCondition" class="input-field" />
+
+
+            <button type="button" id="backButtonProfile" class="btn">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+
+            <button type="submit" id="saveChangesProfile" class="btn">Save Changes</button>
+
+          </form>
+        </div>
+
+  
+        <!-- Tab Content: Account -->
+        <div class="tab-content" id="emailTab">
+          <form action="/submit" method="POST">
+            <h3 for="email">Email</h3>
+            <input type="email" id="email" name="email" class="input-field" />
+            <div class="tab-content-line"></div>
+
+            <h3 for="oldPassword">Old Password</h3>
+            <input type="password" id="oldPassword" name="oldPassword" class="input-field" placeholder="Enter old password" required />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            
+            <h3 for="newPassword">New Password</h3>
+            <input type="password" id="newPassword" name="newPassword" class="input-field" placeholder="Enter new password" required />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+            <h3 for="confirmPassword">Confirm New Password</h3>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="input-field" placeholder="Confirm new password" required />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+            <button type="button" id="backButtonAccount" class="btn">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+
+            <button type="submit" id="saveChangesAccount" class="btn">Save Changes</button>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  
+    <!-- JavaScript for Tab Navigation and Data Fetching -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Function to switch tabs
+        function switchTab(event) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+    
+            // Remove active class from all tabs and contents
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+    
+            // Add active class to clicked tab and corresponding content
+            const index = Array.from(tabs).indexOf(event.target);
+            tabs[index].classList.add('active');
+            contents[index].classList.add('active');
+        }
+    
+        // Attach click event listeners to all tabs
+        const tabElements = document.querySelectorAll('.tab');
+        tabElements.forEach(tab => tab.addEventListener('click', switchTab));
+    
+        // Fetch data and populate fields
+        async function fetchData() {
+            // Retrieve the stored profile data from localStorage
+            const storedProfile = localStorage.getItem('profileData');
+            if (!storedProfile) {
+                console.error('No profile data found.');
+                return;
+            }
+    
+            const item = JSON.parse(storedProfile);
+    
+            // Populate profile info tab
+            document.getElementById('name').value = item.name || '';
+            document.getElementById('employmentStatus').value = item.employmentStatus || '';
+            document.getElementById('firstTime').value = item.firstTime ? "Yes" : "No";
+            document.getElementById('childGender').value = item.childGender || '';
+            document.getElementById('childCondition').value = item.childCondition || '';
+    
+            // Populate challenges
+            const challengesContainer = document.getElementById('challengesContainer');
+            challengesContainer.innerHTML = ''; // Clear any existing challenge items
+    
+            const challenges = [
+                { value: 'Emotional & Mental Distress', label: 'Emotional & Mental Distress', img: 'mental.png' },
+                { value: 'Parenthood', label: 'Parenthood', img: 'parenthood.png' },
+                { value: 'Lack Of Accessible Support', label: 'Lack of Accessible Support', img: 'support.png' },
+                { value: 'Social Discrimination & Isolation', label: 'Social Discrimination & Isolation', img: 'social.png' }
+            ];
+    
+            // Display only the selected challenges
+            item.challenges.forEach(selectedChallenge => {
+                const challenge = challenges.find(ch => ch.value === selectedChallenge);
+                if (challenge) {
+                    const label = document.createElement('label');
+    
+                    const challengeImg = document.createElement('img');
+                    challengeImg.src = "images/" + challenge.img;
+                    challengeImg.alt = challenge.label;
+                    challengeImg.className = 'challenge-icon';
+    
+                    label.appendChild(challengeImg);
+                    label.appendChild(document.createTextNode(challenge.label));
+                    challengesContainer.appendChild(label);
+                }
+            });
+        }
+    
+        window.onload = fetchData;
+    });
+    
+        // Back button to home
+        // Function to handle the back button click
+        function handleBackButtonClick() {
+        // Get the user's name from the form
+        const userName = document.getElementById('name').value;
+
+        // Set a flag to skip the loading screen and animation
+        sessionStorage.setItem('skipAnimation', 'true');
+
+        // Redirect back to home with the user's name in the URL
+        window.location.href = `home.html?name=${encodeURIComponent(userName)}`;
+      }
+
+      // Apply the function to both back buttons
+      document.getElementById('backButtonProfile').addEventListener('click', handleBackButtonClick);
+      document.getElementById('backButtonAccount').addEventListener('click', handleBackButtonClick);
+    
+    </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+  </html>
