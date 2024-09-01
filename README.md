@@ -35,7 +35,9 @@ This branch includes (modified) codes pulled from kj-backend-v2 branch. Updates 
 4. if wrong email/password, cannot login, cannot redirect
 
 - account js [folder] > server.js
-this is the server.js for storing email:password to mongoDB. 
+  
+this is the server.js for storing email:password to mongoDB.
+
 **NOTE: this server.js is NOT combined with kj's server.js**
 
 - profile.html
