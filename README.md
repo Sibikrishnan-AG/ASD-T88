@@ -20,27 +20,31 @@ Version: 3
 
 Summary:
 This branch includes (modified) codes pulled from kj-backend-v2 branch. Updates as listed below...
-- newAccount.html (signup)
+
+**- newAccount.html (signup)**
 
 1. able to toggle password visibility
 2. detect password mismatch
 3. if password mismatch, error message, cannot proceed to createProfile.html, cannot store credentials to db
 4. if password match, proceed to createProfile.html, store credentials to db
 
-- account.html (login)
+**- account.html (login)**
 
 1. able to toggle password visibility
 2. created preset accounts to login, immediate redirection to home.html
 3. since exisitig account has a display name linked, able to get a url /home.html?name=Joe that is linked to email
 4. if wrong email/password, cannot login, cannot redirect
 
-- account js [folder] > server.js
+
+**- account js [folder] > server.js**
   
 this is the server.js for storing email:password to mongoDB.
 
 **NOTE: this server.js is NOT combined with kj's server.js**
 
-- profile.html
+
+**- profile.html**
+
 split into two tabs, able to populate the user inputs from createProfile.html
 
 To be fixed:
