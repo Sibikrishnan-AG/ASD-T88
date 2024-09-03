@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health for Parents</title>
+    <link rel="stylesheet" href="flashcards.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+        <!-- Other content of the screen -->
+       
+    
+    <div class="iphone-container">
+        <div class="screen fade-in">
+            <div style="position: absolute; top: 18px; left: 20px; z-index: 5; font-size: 30px; font-family: 'Mochiy Pop One', sans-serif; font-weight: bold;">
+                <span style="color: #309999; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">E</span>
+                <span style="color: #309999; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">.</span>
+                <span style="color: #5d388e; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);">I</span>
+            </div>
+            <img src="images/monkey.png" alt="Monkey" style="width: 150px; position: absolute; top: 2px; left:80%; transform: translateX(-50%); z-index: 3;">
+
+            <!-- Flashcard 1 -->
+            <div class="flashcard-container" id="flashcard-1">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Managing Stress as a Parent of a Child with ASD</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        Practice stress-relief techniques such as deep breathing exercises or mindfulness meditation to stay calm in challenging situations.
+                    </p>
+                </div>
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 2 -->
+            <div class="flashcard-container hidden" id="flashcard-2">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Self-Care Strategies</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        Make time for activities you enjoy, prioritize sleep and nutrition, seek support from friends, family, or support groups.
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 3 -->
+            <div class="flashcard-container hidden" id="flashcard-3">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Building a Support Network</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        Connect with other parents of children with ASD to share experiences, resources, and emotional support.
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 4 -->
+            <div class="flashcard-container hidden" id="flashcard-4">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Seeking Professional Help</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        If you’re experiencing persistent feelings of anxiety or depression, consider seeking help from a therapist or counselor who specializes in autism and parenting.
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+            </div>
+        </div>
+    </div>
+    <script src="flashcards.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signs of Autism</title>
+    <link rel="stylesheet" href="flashcards.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    
+        <!-- Other content of the screen -->
+    
+    
+    
+    <div class="iphone-container">
+        <div class="screen fade-in">
+            <div style="position: absolute; top: 18px; left: 20px; z-index: 5; font-size: 30px; font-family: 'Mochiy Pop One', sans-serif; font-weight: bold;">
+                <span style="color: #309999; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">E</span>
+                <span style="color: #309999; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">.</span>
+                <span style="color: #5d388e; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);">I</span>
+            </div>
+            <!-- Flashcard 1 -->
+            <div class="flashcard-container" id="flashcard-1">
+                <div class="flashcard front">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">What is Autism Spectrum Disorder (ASD)?</p>
+                </div>
+                <div class="flashcard back">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">
+                        ASD is a developmental disorder that affects:<br>
+                        • Communication<br>
+                        • Behavior<br>
+                        • Social interactions<br>
+                        Symptoms can vary widely and typically appear in early childhood.
+                    </p>
+                </div>
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 2 -->
+            <div class="flashcard-container hidden" id="flashcard-2">
+                <div class="flashcard front">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">Common Symptoms of ASD in Young Children</p>
+                </div>
+                <div class="flashcard back">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">
+                        • Social communication difficulties<br>
+                        • Limited eye contact<br>
+                        • Delayed speech development<br>
+                        • Repetitive behaviors and sensory sensitivities
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 3 -->
+            <div class="flashcard-container hidden" id="flashcard-3">
+                <div class="flashcard front">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">Early Signs of Autism</p>
+                </div>
+                <div class="flashcard back">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">
+                        • Lack of response to their name<br>
+                        • Delayed babbling or speaking<br>
+                        • Fixation on certain objects or topics<br>
+                        • Difficulty with social interactions
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 4 -->
+            <div class="flashcard-container hidden" id="flashcard-4">
+                <div class="flashcard front">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">ASD Diagnosis</p>
+                </div>
+                <div class="flashcard back">
+                    <img src="images/dino.png" alt="Dino" class="dino-image">
+                    <p class="flashcard-text">
+                        ASD is diagnosed through comprehensive evaluations by specialists, using tools like the Autism Diagnostic Observation Schedule (ADOS) and the Autism Diagnostic Interview-Revised (ADI-R).
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+            </div>
+        </div>
+    </div>
+    <script src="flashcards.js"></script>
+</body>
+</html>

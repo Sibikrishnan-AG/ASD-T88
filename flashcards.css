@@ -1,0 +1,160 @@
+/* General body styles */
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Mochiy Pop One', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFFFFF;
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+}
+
+/* Fade effect */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.2s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Phone container */
+.iphone-container {
+    position: relative;
+    width: 380px;
+    height: 750px;
+    background-color:rgb(0, 0, 0);
+    border-radius: 55px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Screen inside the phone */
+.screen {
+    background-color: #FFF8FA; /* Updated background color for all flashcard pages */
+    position: relative;
+    width: 330px;
+    height: 700px;
+    border-radius: 50px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Flashcard styling */
+.flashcard {
+    position: absolute;
+    width: 280px;
+    height: 450px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 2;
+    margin: 0 auto;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.flashcard.front {
+    background-color: #FCC7C7; /* Front color */
+    transform: rotateY(0deg);
+}
+
+.flashcard.back {
+    background-color: #B5E9D3; /* Updated back color */
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.flashcard .flashcard-text {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.flashcard-container {
+    position: relative;
+    width: 280px;
+    height: 450px;
+    perspective: 1000px;
+}
+
+.flipped .front {
+    transform: rotateY(-180deg);
+}
+
+.flipped .back {
+    transform: rotateY(0deg);
+}
+
+/* Dino image styling */
+.dino-image {
+    width: 100px;
+    position: absolute;
+    top: -120px;
+    left: 80%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.dino2-image {
+    width: 100px;
+    position: absolute;
+    top: -120px;
+    left: 80%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+/* Arrow styling */
+.arrow {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: 10px;
+    bottom: -90px;
+}
+
+.arrow-right {
+    right: 10px;
+    bottom: -90px;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+}
+

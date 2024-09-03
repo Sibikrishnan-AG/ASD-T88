@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health for Parents</title>
+    <link rel="stylesheet" href="flashcards.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="iphone-container">
+        <div class="screen fade-in">
+            <div style="position: absolute; top: 18px; left: 20px; z-index: 5; font-size: 30px; font-family: 'Mochiy Pop One', sans-serif; font-weight: bold;">
+                <span style="color: #309999; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">E</span>
+                <span style="color: #309999; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);">.</span>
+                <span style="color: #5d388e; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);">I</span>
+            </div>
+            <!-- Monkey Image -->
+            <img src="images/monkey.png" alt="Monkey" style="width: 150px; position: absolute; top: 2px; left:80%; transform: translateX(-50%); z-index: 3;">
+            <!-- Flashcard 1 -->
+            <div class="flashcard-container" id="flashcard-1">
+                <div class="flashcard front">
+                    <p class="flashcard-text">How can I manage stress as a parent of a child with Autism?</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        • Practice self-care<br>
+                        • Seek support from friends, family, or support groups<br>
+                        • Consider professional counseling
+                    </p>
+                </div>
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 2 -->
+            <div class="flashcard-container hidden" id="flashcard-2">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Self-care activities for parents</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        • Engage in hobbies<br>
+                        • Exercise regularly<br>
+                        • Practice mindfulness<br>
+                        • Ensure you have some personal time each day
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 3 -->
+            <div class="flashcard-container hidden" id="flashcard-3">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Building a Support Network</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        • Join support groups<br>
+                        • Connect with other parents<br>
+                        • Seek counseling to share experiences and strategies
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 4 -->
+            <div class="flashcard-container hidden" id="flashcard-4">
+                <div class="flashcard front">
+                    <p class="flashcard-text">Strategies for Maintaining Mental Wellbeing</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        • Prioritize sleep<br>
+                        • Maintain a balanced diet<br>
+                        • Engage in relaxation techniques such as yoga or deep breathing
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+                <img src="images/right-arrow.png" alt="Right Arrow" class="arrow arrow-right" onclick="nextCard()">
+            </div>
+            <!-- Flashcard 5 -->
+            <div class="flashcard-container hidden" id="flashcard-5">
+                <div class="flashcard front">
+                    <p class="flashcard-text">How can I balance caregiving with personal time?</p>
+                </div>
+                <div class="flashcard back">
+                    <p class="flashcard-text">
+                        • Schedule regular personal time<br>
+                        • Set boundaries<br>
+                        • Make use of respite care services<br>
+                        • Support from family and friends
+                    </p>
+                </div>
+                <img src="images/left-arrow.png" alt="Left Arrow" class="arrow arrow-left" onclick="prevCard()">
+            </div>
+        </div>
+    </div>
+    <script src="flashcards.js"></script>
+</body>
+</html>
