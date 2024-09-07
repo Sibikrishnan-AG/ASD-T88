@@ -1,0 +1,331 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #35524a; /* Dark teal/greenish-blue background */
+    color: #f0f0f0; /* Light gray/white text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Chat Container */
+#chat-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #2e3d37; /* Slightly darker green/teal for the chat container */
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 90vh; /* Occupies 90% of the screen height */
+    margin: 10px; /* Add margin to ensure the chatbox isn't squeezed */
+    overflow-x: hidden; /* Ensure no horizontal scroll */
+    box-sizing: border-box;
+}
+
+/* Chatbox Styles */
+#chatbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: calc(70% - 40px); /* Dynamic height calculation */
+    overflow-y: auto;
+    overflow-x: hidden; /* Ensure no horizontal scroll */
+    box-sizing: border-box;
+}
+
+#chat-output {
+    flex: 1;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden; /* Ensure no horizontal scroll */
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+#chat-output p {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#chat-output p.bot-message {
+    background-color: #4c5f53; /* Darker muted green for bot messages */
+    text-align: left;
+    color: #f0f0f0;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    line-height: 1.5; /* Increase line height for better readability */
+    font-size: 16px; /* Slightly increase font size */
+    padding: 10px; /* Add padding to increase space around the text */
+    margin-bottom: 10px; /* Add space between messages */
+    border-radius: 10px; /* Keep the rounded corners */
+    box-sizing: border-box;
+}
+
+#chat-output p.user-message {
+    background-color: #607466; /* Muted green for user messages */
+    color: #fff;
+    text-align: right;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    line-height: 1.5; /* Increase line height for better readability */
+    font-size: 16px; /* Slightly increase font size */
+    padding: 10px; /* Add padding to increase space around the text */
+    margin-bottom: 10px; /* Add space between messages */
+    border-radius: 10px; /* Keep the rounded corners */
+    box-sizing: border-box;
+}
+
+#chat-output p.bot-message strong {
+    font-weight: bold;
+}
+
+#chat-output p.bot-message em {
+    font-style: italic;
+}
+
+#chat-output p.bot-message code {
+    background-color: #eee;
+    border-radius: 3px;
+    padding: 2px 4px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Input Container Styles */
+#input-container {
+    display: flex;
+    margin-top: auto; /* Pushes input container to the bottom */
+    flex-direction: column; /* Stacks input and send button on top of each other */
+    margin-bottom: 10px; /* Add margin below to separate it from the buttons */
+    box-sizing: border-box;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #607466; /* Match input field with user messages */
+    color: #f0f0f0;
+    width: 100%; /* Ensures full width on mobile */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #f4a261; /* Pastel yellow/orange for the send button */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%; /* Full width button for mobile */
+    margin-top: 10px; /* Adds some space between input and send button */
+    box-sizing: border-box;
+}
+
+#send-button:hover {
+    background-color: #e76f51; /* Darker orange on hover */
+}
+
+/* Button Container Styles */
+#button-container {
+    display: flex;
+    justify-content: space-between; /* Buttons side by side */
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#button-container button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4a261; /* Pastel yellow for buttons */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+#button-container button:hover {
+    background-color: #e76f51; /* Darker orange on hover */
+}
+
+/* Media Query for Mobile */
+@media (max-width: 600px) {
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #chat-container {
+        width: 90%;
+        max-width: 100%;
+        height: 90vh; /* 90% of the viewport height */
+        padding: 20px;
+        border-radius: 20px;
+        margin: 10px; /* Ensure some margin around the chat container */
+        box-sizing: border-box;
+    }
+
+    #chatbox {
+        max-height: 60vh;
+    }
+
+    #summary-container {
+        width: 90%;
+        padding: 10px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+        margin: 20px auto;
+        box-sizing: border-box;
+    }
+
+    #summary-content {
+        max-height: 90vh;
+    }
+
+    #input-container {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: auto; /* Aligns input and send button closer to the bottom */
+        margin-bottom: 10px; /* Add margin to separate from the buttons */
+        box-sizing: border-box;
+    }
+
+    #user-input {
+        margin-bottom: 10px;
+    }
+
+    #send-button {
+        width: 100%; /* Full width on mobile */
+    }
+
+    #button-container {
+        flex-direction: row;
+        justify-content: space-between;
+        position: static; /* Remove absolute positioning for mobile */
+        bottom: 0;
+        box-sizing: border-box;
+    }
+
+    #button-container button {
+        width: calc(50% - 10px); /* Ensure buttons are side by side */
+    }
+}
+
+/* SUMMARY PAGE */
+
+#summary-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #2e3d37; /* Slightly darker green/teal for the container */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin: 10px; /* Ensure margin around the summary container */
+    overflow-x: hidden; /* Ensure no horizontal scroll */
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    color: #f0f0f0; /* Light gray/white for headings */
+}
+
+#summary-content {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.summary-block {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #4c5f53; /* Darker muted green for summary blocks */
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+/* Button Container Styles for Summary Page */
+#summary-button-container {
+    display: flex;
+    justify-content: space-between; /* Ensure buttons are side by side */
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#summary-button-container button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4a261; /* Pastel yellow/orange for buttons */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+#summary-button-container button:hover {
+    background-color: #e76f51; /* Darker orange on hover */
+}
+
+#back-button, #back-home-button {
+    padding: 10px 20px;
+    background-color: #f4a261; /* Pastel yellow/orange for buttons */
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+    box-sizing: border-box;
+}
+
+#back-button:hover, #back-home-button:hover {
+    background-color: #e76f51; /* Darker orange on hover */
+}
+
+/* WebKit Browsers (Chrome, Safari) - Custom Scrollbar */
+#chat-output::-webkit-scrollbar,
+#summary-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-output::-webkit-scrollbar-thumb,
+#summary-content::-webkit-scrollbar-thumb {
+    background-color: #a3d3b8; /* Custom scrollbar color */
+    border-radius: 10px;
+}
+
+#chat-output::-webkit-scrollbar-track,
+#summary-content::-webkit-scrollbar-track {
+    background-color: #2e3d37; /* Background of the scrollbar track */
+    border-radius: 10px;
+}
+
+/* Placeholder Text Color */
+#user-input::placeholder {
+    color: #f0f0f0; /* Light gray/white color for the placeholder text */
+    opacity: 1; /* Ensure the color is fully opaque */
+}
