@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Settings</title>
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+      <div class="iphone-content">
+        <h1>Settings</h1>
+        <div class="profileline"></div>
+  
+        <!-- Tab Navigation -->
+        <div class="tabs">
+          <div class="tab active">My profile</div>
+          <div class="tab">Change password</div>
+        </div>
+  
+        <!-- Tab Content: Profile Info -->
+        <div class="tab-content active" id="profileTab">
+          <form action="/update" method="POST">
+
+            <h3 for="name">Display Name</h3>
+            <div class="editable-field">
+                <input type="text" id="name" name="name" class="input-field" readonly />
+                <i class="bi bi-pencil-fill edit-icon" id="editDisplayName"></i>
+            </div>
+
+            <h3 for="email">Email</h3>
+            <div class="editable-field">
+                <input type="email" id="email" name="email" class="input-field" readonly />
+                <i class="bi bi-pencil-fill edit-icon" id="editEmail"></i>
+            </div>
+
+            <h3 for="employmentStatus">My Employment Status</h3>
+            <div class="editable-field">
+                <input type="text" id="employmentStatus" name="employmentStatus" class="input-field" readonly />
+                <i class="bi bi-pencil-fill edit-icon" id="editEmployment"></i>
+                <select id="employmentDropdown" class="form-select">
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Stay-at-home parent">Stay-at-home parent</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+            </div>
+
+            <h3 for="firstTime">Experience as caregiver</h3>
+            <div class="editable-field">
+                <input type="text" id="firstTime" name="firstTime" class="input-field" readonly />
+                <i class="bi bi-pencil-fill edit-icon" id="editExperience"></i>
+                <select id="experienceDropdown" class="form-select">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <h3 for="challengesContainer">My Current Challenges
+              <i class="bi bi-pencil-fill edit-icon" id="editChallenges"></i>
+            </h3>
+            <div class="challenge-options" id="challengesContainer">
+                <!-- Checkboxes or icons for challenges will be populated here -->
+            </div>
+            <!-- Add the pop-up box for selecting challenges -->
+            <div class="overlay"></div>
+            <div class="popup-box" id="challengesPopup">
+              <div class="challenge-options" id="popupChallengesContainer">
+                  <!-- Challenge options will be dynamically populated here -->
+              </div>
+              <button type="button" class="saveChlgs-button" id="saveChlgsButton">Done</button>
+            </div>
+          
+
+            <h3 for="childGender">Child's Gender</h3>
+            <div class="editable-field">
+                <input type="text" id="childGender" name="childGender" class="input-field" readonly />
+                <i class="bi bi-pencil-fill edit-icon" id="editGender"></i>
+                <select id="genderDropdown" class="form-select">
+                    <option value="Boy">Boy</option>
+                    <option value="Girl">Girl</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+            </div>
+
+            <h3 for="childCondition">Child's Condition</h3>
+            <div class="editable-field">
+                <input type="text" id="childCondition" name="childCondition" class="input-field" readonly />
+                <i class="bi bi-pencil-fill edit-icon" id="editCondition"></i>
+                <select id="conditionDropdown" class="form-select">
+                    <option value="ADHD">ADHD</option>
+                    <option value="Autism (ASD)">Autism (ASD)</option>
+                </select>
+            </div>
+
+
+            <button type="button" id="backButtonProfile" class="btn">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+
+            <button type="submit" id="saveChangesProfile" class="btn">Save Changes</button>
+
+          </form>
+        </div>
+
+  
+        <!-- Tab Content: Account -->
+        <div class="tab-content" id="pwTab">
+          <form action="/changePassword" method="POST">
+
+            <h3 for="oldPassword">Old Password</h3>
+            <input type="password" id="oldPassword" name="oldPassword" class="input-field" placeholder="Enter old password" required />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+            
+            <h3 for="newPassword">New Password</h3>
+            <input type="password" id="newPassword" name="newPassword" class="input-field" placeholder="Enter new password" required />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+            <h3 for="confirmPassword">Confirm New Password</h3>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="input-field" placeholder="Confirm new password" required />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+
+            <button type="button" id="backButtonAccount" class="btn">
+              <i class="bi bi-arrow-left"></i> Back
+            </button>
+
+            <button type="submit" id="saveChangesPassword" class="btn">Save Changes</button>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+  </html>
