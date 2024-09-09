@@ -1,7 +1,9 @@
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 const bodyParser = require('body-parser');
+const OpenAI = require('openai');
 require('dotenv').config();
+const path = require('path');
 
 const app = express();
 const port = 3000;
@@ -21,19 +23,84 @@ app.use(session({
   cookie: { secure: false } // Set to true if using HTTPS
 }));
 
+// Initialize OpenAI client
+const openai = new OpenAI();
+
 async function main() {
   const client = new MongoClient(uri);
   await client.connect();
   console.log("Connected to MongoDB");
 
   const db = client.db("EmpathInteract");
-  const collection = db.collection("test");
+  const collection = db.collection("users");
 
   // Serve HTML Pages
-  app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
-  app.get('/profile.html', (req, res) => res.sendFile(__dirname + '/profile.html'));
-  app.get('/home.html', (req, res) => res.sendFile(__dirname + '/home.html'));
-  app.get('/newAccount.html', (req, res) => res.sendFile(__dirname + '/newAccount.html'));
+  app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'home.html')));
+  app.get('/chatbot', (req, res) => res.sendFile(path.join(__dirname, 'chatbot.html')));
+  app.get('/summary', (req, res) => res.sendFile(path.join(__dirname, 'summary.html')));
+  app.get('/profile.html', (req, res) => res.sendFile(path.join(__dirname, 'profile.html')));
+  app.get('/newAccount.html', (req, res) => res.sendFile(path.join(__dirname, 'newAccount.html')));
+
+  // Serve the flashcard HTML files
+  app.get('/knowledge-base', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+  app.get('/autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'autism.html')));
+  app.get('/adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'adhd.html')));
+  app.get('/mental-health-autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'mental-health-autism.html')));
+  app.get('/mental-health-adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'mental-health-adhd.html')));
+  app.get('/signs-autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'signs-autism.html')));
+  app.get('/signs-adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'signs-adhd.html')));
+  app.get('/tips-autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'tips-autism.html')));
+  app.get('/tips-adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'tips-adhd.html')));
+
+  // Chat API endpoint
+  app.post('/api/chat', async (req, res) => {
+    try {
+      const userInput = req.body.message;
+      if (!userInput) {
+        return res.status(400).json({ error: 'No input provided' });
+      }
+
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: "You are a helpful assistant providing strategies for parents with special needs children." },
+          { role: "user", content: userInput }
+        ],
+      });
+
+      const chatResponse = completion.choices[0].message.content;
+      res.json({ response: chatResponse });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({ error: `An error occurred on the server: ${error.message}` });
+    }
+  });
+
+  // Summary API endpoint
+  app.post('/api/summarize', async (req, res) => {
+    try {
+      const chatHistory = req.body.chatHistory;
+      const chatText = chatHistory.map(entry => `${entry.role === 'user' ? 'User' : 'GPT'}: ${entry.content}`).join('\n');
+      const completion = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: "You are a helpful assistant that summarizes conversations into their respective problem and stragies to counter the problem in a concise manner." },
+          { role: "user", content: `Summarize the following chat: \n\n${chatText}` }
+        ],
+      });
+
+      const summaryResponse = completion.choices[0].message.content;
+      const problemMatch = summaryResponse.match(/Problem:\s*([\s\S]*?)\n\*\*Strategy:/);
+      const strategyMatch = summaryResponse.match(/\*\*Strategy:\s*([\s\S]*)/);
+      const problem = problemMatch ? problemMatch[1].trim() : "Problem summary not found.";
+      const strategy = strategyMatch ? strategyMatch[1].trim() : "Strategy summary not found.";
+
+      res.json({ problem, strategy });
+    } catch (error) {
+      console.error('Error summarizing chat:', error);
+      res.status(500).json({ error: 'Failed to summarize the chat.' });
+    }
+  });
 
   // Fetch User Data
   app.get('/api/data', async (req, res) => {

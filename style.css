@@ -1226,13 +1226,6 @@ h3 {
     z-index: 999; /* Just under the pop-up box */
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 600px) {
-    .popup-box {
-        width: 90%; /* Adjust the size for smaller screens */
-    }
-}
-
 /* Adjust pen icon for "My Current Challenges" */
 #editChallenges {
     position: absolute;
@@ -1249,4 +1242,221 @@ h3[for="challengesContainer"] {
     align-items: center;
     position: relative;
     margin-bottom: 10px;
+}
+
+
+/* Chatbot Styles */
+#chat-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #2e3d37;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 90vh;
+    margin: 10px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Chatbox styles */
+#chatbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-height: calc(70% - 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+#chat-output {
+    flex: 1;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+#chat-output p {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#chat-output p.bot-message {
+    background-color: #4c5f53;
+    color: #f0f0f0;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#chat-output p.user-message {
+    background-color: #607466;
+    color: #fff;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#user-input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #607466;
+    color: #f0f0f0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+#send-button:hover {
+    background-color: #e76f51;
+}
+
+#button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#button-container button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+#button-container button:hover {
+    background-color: #e76f51;
+}
+
+/* Styles for summary container */
+#summary-container {
+    width: 90%;
+    max-width: 400px;
+    background-color: #2e3d37;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    height: 90vh;
+    margin: 10px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Styles for individual summary blocks */
+.summary-block {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #4c5f53; /* Same color as bot message */
+    color: #f0f0f0;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Headings for problem and strategy */
+.summary-block h4 {
+    margin-top: 10px;
+    color: #f4a261; /* You can adjust the color to match your theme */
+}
+
+/* Style for the home and back buttons */
+#summary-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#summary-button-container button {
+    flex: 1;
+    padding: 10px;
+    background-color: #f4a261;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+}
+
+#summary-button-container button:hover {
+    background-color: #e76f51;
+}
+
+#summary-container h1, /* The "Chat Summary" heading */
+#summary-container h3, /* The "Summary 1, 2, 3..." headings */
+#summary-container h4, /* The "Problem" and "Strategy" headings */
+#summary-container p { /* The paragraphs inside each summary */
+    color: white; /* Change text color to white */
+}
+
+
+
+
+
+/* Add media queries to ensure responsiveness */
+@media (max-width: 600px) {
+    /* Chat styles optimized for smaller screens */
+    #chat-container {
+        width: 90%;
+        max-width: 100%;
+        height: 90vh;
+        padding: 20px;
+        border-radius: 20px;
+        margin: 10px;
+        box-sizing: border-box;
+    }
+
+    .popup-box {
+        width: 90%; /* Adjust the size for smaller screens */
+    }
+
+    #chatbox {
+        max-height: 60vh;
+    }
 }
