@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="iphone-content">
+            <!-- Loading Animation -->
+            <div id="loading-screen">
+                <img src="images/head.png" alt="loading" id="loading-logo">
+            </div>
+
+            <!-- Welcome Message -->
+            <div id="welcomeMessage">
+                <h2>Welcome, <span id="userName"></span></h2>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features">
+                <div class="options">
+                    <!-- Knowledge Base -->
+                    <label class="option">
+                        <input type="radio" name="feature" value="knowledge">
+                        <a href="/knowledgeBase.html" class="knowledge-link" style="text-decoration: none; color: inherit;">
+                            <div class="imageBubble">
+                                <img src="images/knowledgebase.png" alt="knowledge">
+                            </div>
+                            <h3><span class="part1">E.</span><span class="part2">I</span> Knowledge Base</h3>
+                        </a>
+                        <p>Flashcards-style to read valuable <br> 
+                            insights on parenthood with <br> 
+                            a special needs child</p>
+                    </label>
+                    <!-- E.I -->
+                    <label class="option">
+                        <input type="radio" name="feature" value="ei">
+                        <a href="/chatbot" class="highlight" style="text-decoration: none; color: inherit;">
+                            <div class="imageBubble">
+                                <img src="images/ei.png" alt="ei">
+                            </div>
+                            <h3><span class="part1">E.</span><span class="part2">I</span></h3> 
+                        </a>
+                        <p>Talk to your personalized <br>
+                            virtual assistant here!</p>
+                    </label>
+                    <!-- Profile settings -->
+                    <label class="option">
+                        <input type="radio" name="feature" value="settings">
+                        <div id="profileButton" class="highlight">
+                            <div class="imageBubble">
+                                <img src="images/profile.png" alt="settings">
+                            </div>
+                            <h3>Edit your profile</h3> 
+                        </div>
+                        <p>To help E.I personalize your experience</p>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Autism</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="knowledge-base-page">
+    <div class="container">
+        <div class="iphone-container">
+            <div class="screen">
+                <h1 id="title">Browse by topics on ASD (Autism)!</h1>
+
+                <!-- Breadcrumb navigation -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="knowledgeBase.html">Knowledge Base</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">ASD (Autism)</li>
+                    </ol>
+                </nav>
+
+                <div class="card-container">
+                    <!-- Card 1 -->
+                    <a href="tips-autism.html" class="card-link">
+                    <div class="card">
+                        <div class="icon-container">
+                            <!-- Example Icon -->
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <h2 class="card-title">Tips for supporting your child</h2>
+                        <p class="card-description">Discover effective strategies to manage and support your child with Autism, guided by expert insights.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <a href="signs-autism.html" class="card-link">
+                    <div class="card">
+                        <div class="icon-container">
+                            <!-- Example Icon -->
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+                        <h2 class="card-title">"Does my child have Autism?"</h2>
+                        <p class="card-description">Learn to recognize the early indicators of Autism to better support your child's development.</p>
+                    </div>
+                </div>
+                <!-- <button id="backOnePage" class="backbtn" onclick="window.location.href='knowledgeBase.html'">Back</button> -->
+            </div>
+        </div>
+    </div>
+    <script>
+                    // Smooth fade-in effect
+            document.addEventListener("DOMContentLoaded", function() {
+                const screen = document.querySelector('.screen');
+                screen.classList.add('show');
+            });
+
+            // Redirecting back to knowledgeBase.html
+            function goBack() {
+                window.location.href = "knowledgeBase.html";
+            }
+
+    </script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

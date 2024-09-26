@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Background color outside the iPhone dimensions */
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    width: 390px; /* iPhone 14 width */
+    height: 844px; /* iPhone 14 height */
+    background-color: #FFEBAD; /* Background color inside the iPhone */
+    border: 5px solid black; /* Optional: Simulate the iPhone's screen border */
+    border-radius: 45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow for better visibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures no overflow outside the boundaries */
+    position: relative; /* Ensure absolute positioning stays within this frame */
+}
+
+.iphone-content {
+    width: 100%; /* Ensures the content fits within the iPhone container */
+    height: 100%; /* Ensures the content fits within the iPhone container */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 18px; /* Increased padding for more space around the content */
+    box-sizing: border-box;
+}
+.knowledge-base-page .container {
+    width: 390px;
+    height: 844px;
+    background-color: #FFF6E8;
+    border: 5px solid black;
+    border-radius: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.knowledge-base-page .screen {
+    position: relative;
+    width: 330px;
+    height: 700px;
+    background-color: #FFF6E8;
+    border-radius: 50px;
+    padding: 10px 20px; /* Reduced top padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Title styling */
+.knowledge-base-page h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #363333;
+    text-align: center;
+    margin-top: -40px; /* Use negative margin to move it up */
+    padding-top: 0;
+    margin-bottom: 20px; /* Space between the title and bubbles */
+}
+
+/* Custom breadcrumb styles */
+.custom-breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-top: 0; /* Add space between heading and breadcrumb */
+    margin-bottom: 0; /* Increase space between breadcrumb and card */
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensure breadcrumb stays above card */
+}
+
+.custom-breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    display: inline-block; /* Ensures breadcrumb stays centered */
+}
+
+.custom-breadcrumb li {
+    display: inline;
+    font-weight: 500;
+}
+
+.custom-breadcrumb li + li:before {
+    content: " / "; /* Separator between breadcrumb items */
+    padding: 0 5px;
+    display: inline;
+    font-weight: 500;
+    color: #7b4b94; /* Purple color for separators */
+}
+
+.custom-breadcrumb a {
+    color: #7b4b94; /* Purple color for breadcrumb links */
+    text-decoration: none;
+}
+
+.custom-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.custom-breadcrumb .active {
+    font-weight: bold;
+    color: #333; /* Darker color for active/current breadcrumb */
+    font-weight: 800;
+}
+/* for kbSupport.html */
+/* Custom breadcrumb styles for the default breadcrumb */
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    display: inline-block; /* Ensures breadcrumb stays centered */
+}
+
+.breadcrumb li {
+    display: inline;
+    font-weight: 500;
+}
+
+.breadcrumb li + li:before {
+    content: " / "; /* Separator between breadcrumb items */
+    padding: 0 5px;
+    color: #7b4b94; /* Purple color for separators */
+}
+
+.breadcrumb a {
+    color: #7b4b94; /* Purple color for breadcrumb links */
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb .active {
+    font-weight: bold;
+    color: #333; /* Darker color for active/current breadcrumb */
+    font-weight: 800;
+}
+
+
+/* ====================================================================================================== */
+/* tips-adhd.html */
+/* Card title */
+.flashcard .flashcard-text {
+    font-size: 35px;
+    color: #7b4b94;
+    text-align: left; /* Ensures text alignment is to the left */
+    padding: 0; /* Removes padding to align text closely with the image */
+    margin: 0; /* Removes margin to reduce any unnecessary space */
+    font-weight: 600;
+    line-height: 1.2; /* Adjusts the line height to better align with the image */
+}
+/* Flashcard title and bullet point with E.I logo */
+.custom-bullet {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px; /* Add space between the image and text */
+    align-self: flex-start;
+}
+
+/* Position the arrow in the top right corner */
+.arrow-icon {
+    position: absolute;
+    top: 20px; /* Adjust the position to match the red X */
+    left: 260px; /* Adjust the position to match the red X */
+    width: 10px; /* Resize if needed */
+    height: auto;
+}
+
+/* Header of every point form id=title */
+.flashcard-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+/* Description of point form*/
+.flashcard-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Size of the card */
+.flashcard-container {
+    display: flex;
+    width: 320px;
+    height: 550px;
+    perspective: 1000px;
+    margin-top: 5px; /* Adjust to create space between the card and the breadcrumb */
+    position: relative;
+    z-index: 1; /* Ensure the card stays below the breadcrumb */
+    
+}
+/* Flashcard styling */
+.flashcard {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    overflow-y: auto; /* Enable scroll if content exceeds container */
+}
+
+.flashcard.front {
+    display: flex;
+    flex-direction: column; /* Align content in a vertical column */
+    justify-content: flex-start;
+    padding: 20px;
+    height: 100%; /* Ensure the flashcard takes the full height */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+    background-color: #FCC7C7;
+}
+
+/* Push the links to the bottom */
+.flashcard-links {
+    margin-top: auto; /* Push the links and 'Learn more' text to the bottom */
+    text-align: left;
+}
+
+.flashcard-links p {
+    font-weight: bold;
+}
+
+.flashcard-links ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+}
+
+.flashcard-links a {
+    color: #666;
+    text-decoration: none;
+}
+
+.flashcard-links a:hover {
+    text-decoration: underline;
+}
+
+.flashcard.back {
+    background-color: #B5E9D3;
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto; /* Allows scrolling for long content */
+    padding: 20px; /* Add padding inside the card */
+    height: 100%; /* Ensure the card back takes the full height */
+    box-sizing: border-box; /* Include padding in the element's total width/height */
+}
+.flashcard-content {
+    height: auto;
+    max-height: 100%; /* Limit height to the card's container */
+    overflow-y: auto; /* Enable scrolling for long content */
+    display: flex;
+    flex-direction: column;
+}
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.flipped .front {
+    transform: rotateY(-180deg);
+}
+
+.flipped .back {
+    transform: rotateY(0deg);
+}
+
+/* Dino image styling
+.dino-image {
+    width: 100px;
+    position: absolute;
+    top: -120px;
+    left: 80%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.dino2-image {
+    width: 100px;
+    position: absolute;
+    top: -120px;
+    left: 80%;
+    transform: translateX(-50%);
+    z-index: 3;
+} */
+
+/* Switching cards */
+.arrow {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.arrow-left {
+    left: 10px;
+    bottom: -60px;
+}
+
+.arrow-right {
+    right: 10px;
+    bottom: -60px;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+}
+

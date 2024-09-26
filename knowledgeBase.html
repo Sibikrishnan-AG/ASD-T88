@@ -1,0 +1,93 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<body class="knowledge-base-page">
+    <div class="container">
+        <div class="iphone-container">
+            <div class="screen">
+                <h1>Welcome to<br><span class="part1">E.</span><span class="part2">I</span> Knowledge Base</h1>
+                <div class="bubble-container">
+                    <!-- ADHD Bubble -->
+                    <div class="bubble adhd" id="adhd-bubble">
+                        <img src="images/graphADHD.png" alt="ADHD Bubble">
+
+                    </div>
+                    <!-- Autism Bubble -->
+                    <div class="bubble autism" id="autism-bubble">
+                        <img src="images/graphAutism.png" alt="Autism Bubble">
+
+                    </div>
+                    <!-- Family Bubble -->
+                    <div class="bubble family" id="family-bubble">
+                        <img src="images/kbSupport.png" alt="Family Bubble">
+
+                    </div>
+                </div>
+                <button type="button" id="backButtonKB" class="backbtn">
+                    <i class="bi bi-arrow-left"></i> Back to home
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the 'name' parameter from the current URL
+        var params = new URLSearchParams(window.location.search);
+        var userName = params.get('name');
+        
+        console.log("Username parameter:", userName); // Debugging output to ensure name is captured
+
+        // Check if the back button exists
+        var backButton = document.getElementById('backButtonKB');
+        if (backButton) {
+            // Ensure that the back button redirects with the name parameter
+            backButton.addEventListener('click', function() {
+                if (userName) {
+                    window.location.href = 'home.html?name=' + encodeURIComponent(userName);
+                } else {
+                    window.location.href = 'home.html';  // Fallback in case the name is missing
+                }
+            });
+        } else {
+            console.error("Back button not found!");  // Error logging if button is missing
+        }
+
+        // Debugging - Ensure the bubbles respond correctly
+        document.getElementById('adhd-bubble').addEventListener('click', function() {
+            animateBubble(this, 'adhd.html?name=' + encodeURIComponent(userName));
+        });
+
+        document.getElementById('autism-bubble').addEventListener('click', function() {
+            animateBubble(this, 'autism.html?name=' + encodeURIComponent(userName));
+        });
+
+        document.getElementById('family-bubble').addEventListener('click', function() {
+            animateBubble(this, 'kbSupport.html?name=' + encodeURIComponent(userName));
+        });
+
+        // Animation function for the bubbles
+        function animateBubble(bubble, redirectUrl) {
+            // Add animation class
+            bubble.classList.add('bubble-clicked');
+            
+            // Delay redirection until after the animation
+            setTimeout(function() {
+                window.location.href = redirectUrl;
+            }, 500); // Adjust delay to match animation duration
+        }
+    });
+</script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
