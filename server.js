@@ -16,15 +16,16 @@ app.use(bodyParser.json());
 
 const session = require('express-session');
 
+
 app.use(session({
-  secret: 'your-secret-key', // Replace with a secure secret key
+  secret: 't88-secret-key',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
+  cookie: { secure: false } 
 }));
 
 // Initialize OpenAI client
-const openai = new OpenAI();
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
 async function main() {
   const client = new MongoClient(uri);
@@ -42,15 +43,15 @@ async function main() {
   app.get('/newAccount.html', (req, res) => res.sendFile(path.join(__dirname, 'newAccount.html')));
 
   // Serve the flashcard HTML files
-  app.get('/knowledge-base', (req, res) => res.sendFile(path.join(__dirname, 'knowledgeBase.html')));
-  app.get('/autism', (req, res) => res.sendFile(path.join(__dirname, 'autism.html')));
-  app.get('/adhd', (req, res) => res.sendFile(path.join(__dirname, 'adhd.html')));
-  app.get('/mental-health-autism', (req, res) => res.sendFile(path.join(__dirname, 'kbSupport.html')));
-  app.get('/mental-health-adhd', (req, res) => res.sendFile(path.join(__dirname, 'mental-health-adhd.html')));
-  app.get('/signs-autism', (req, res) => res.sendFile(path.join(__dirname, 'signs-autism.html')));
-  app.get('/signs-adhd', (req, res) => res.sendFile(path.join(__dirname, 'signs-adhd.html')));
-  app.get('/tips-autism', (req, res) => res.sendFile(path.join(__dirname, 'tips-autism.html')));
-  app.get('/tips-adhd', (req, res) => res.sendFile(path.join(__dirname, 'tips-adhd.html')));
+  app.get('/knowledge-base', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+  app.get('/autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'autism.html')));
+  app.get('/adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'adhd.html')));
+  app.get('/mental-health-autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'mental-health-autism.html')));
+  app.get('/mental-health-adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'mental-health-adhd.html')));
+  app.get('/signs-autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'signs-autism.html')));
+  app.get('/signs-adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'signs-adhd.html')));
+  app.get('/tips-autism', (req, res) => res.sendFile(path.join(__dirname, 'public', 'tips-autism.html')));
+  app.get('/tips-adhd', (req, res) => res.sendFile(path.join(__dirname, 'public', 'tips-adhd.html')));
 
   // Chat API endpoint
   app.post('/api/chat', async (req, res) => {
@@ -76,31 +77,60 @@ async function main() {
     }
   });
 
-  // Summary API endpoint
   app.post('/api/summarize', async (req, res) => {
     try {
-      const chatHistory = req.body.chatHistory;
+      const { userId, chatHistory } = req.body;
       const chatText = chatHistory.map(entry => `${entry.role === 'user' ? 'User' : 'GPT'}: ${entry.content}`).join('\n');
+  
       const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: [
-          { role: "system", content: "You are a helpful assistant that summarizes conversations into their respective problem and stragies to counter the problem in a concise manner." },
-          { role: "user", content: `Summarize the following chat: \n\n${chatText}` }
+            { role: "system", content: "You are a helpful assistant that summarizes conversations into their respective problem and strategies to counter the problem in a concise manner." },
+            { role: "user", content: `Summarize the following chat: \n\n${chatText}` }
         ],
-      });
+    });
 
-      const summaryResponse = completion.choices[0].message.content;
-      const problemMatch = summaryResponse.match(/Problem:\s*([\s\S]*?)\n\*\*Strategy:/);
-      const strategyMatch = summaryResponse.match(/\*\*Strategy:\s*([\s\S]*)/);
-      const problem = problemMatch ? problemMatch[1].trim() : "Problem summary not found.";
-      const strategy = strategyMatch ? strategyMatch[1].trim() : "Strategy summary not found.";
+    const summaryResponse = completion.choices[0].message.content;
+    console.log('OpenAI response:', summaryResponse);
 
+    const problemMatch = summaryResponse.match(/\*\*Problems Identified:\*\*([\s\S]*?)(?:\*\*Strategies to Counter Problems:|\n\*\*Strategy)/);
+    const strategyMatch = summaryResponse.match(/\*\*Strategies to Counter Problems:\*\*([\s\S]*)/);
+
+    const problem = problemMatch ? problemMatch[1].trim() : "Problem summary not found.";
+    const strategy = strategyMatch ? strategyMatch[1].trim() : "Strategy summary not found.";
+  
+      const objectId = new ObjectId(userId);
+      const existingUser = await collection.findOne({ _id: objectId });
+  
+      if (!existingUser) {
+        console.error("User not found with id:", userId);
+        return res.status(404).json({ error: "User not found" });
+      }
+  
+      console.log("User found:", existingUser);
+      const updateResult = await collection.updateOne(
+        { _id: existingUser._id },
+        { $set: { summary: {
+          problem: problemMatch,
+          strategy: strategyMatch
+        } } }
+      );
+  
+      if (updateResult.modifiedCount !== 1) {
+        console.error("Failed to update profile for user:", existingUser._id);
+        return res.status(500).json({ error: "Error updating profile. Please try again." });
+      }
+  
+      console.log("User profile updated:", existingUser._id);
       res.json({ problem, strategy });
+  
     } catch (error) {
       console.error('Error summarizing chat:', error);
-      res.status(500).json({ error: 'Failed to summarize the chat.' });
+      return res.status(500).json({ error: 'Failed to summarize the chat.' });
     }
   });
+  
+
 
   // Fetch User Data
   app.get('/api/data', async (req, res) => {
@@ -136,7 +166,7 @@ async function main() {
       // Check if email already exists
       const existingUser = await collection.findOne({ email });
       if (existingUser) {
-        return res.status(400).send('<script>alert("Email already exists."); window.location.href = "/newAccount.html";</script>');
+        return res.status(400).send('<script>alert("Email already exists. Use a different email!"); window.location.href = "/newAccount.html";</script>');
       }
   
       // Generate new user ID (auto-increment)
@@ -147,11 +177,11 @@ async function main() {
       const result = await collection.insertOne({
         id: newId,
         email,
-        password, // Make sure to hash the password in a real-world scenario
+        password,
       });
   
       // Store user ID in session
-      req.session.userId = result.insertedId; // MongoDB generates a unique ID for each document
+      req.session.userId = result.insertedId; 
   
       console.log("New user created with ID:", newId);
       res.redirect('/createProfile.html'); // Redirect to the profile page after registration
@@ -164,44 +194,41 @@ async function main() {
   
   
    // Create New User Profile
-  app.post('/create', async (req, res) => {
+   app.post('/create', async (req, res) => {
     try {
-      // Retrieve user ID from session
-      const userId = req.session.userId;
+      const { userId, name, firstTime, employmentStatus, challenges, childGender, childCondition } = req.body;
+      const objectId = new ObjectId(userId);
+      const existingUser = await collection.findOne({ _id: objectId });
   
-      // If the user is not logged in or session expired
-      if (!userId) {
-        return res.status(401).send('<script>alert("Session expired. Please log in again."); window.location.href = "/newAccount.html";</script>');
-      }
-  
-      // Extract profile data from the request body
-      const { name, firstTime, employmentStatus, challenges, childGender, childCondition } = req.body;
-  
-      // Update the user's profile in the database
-      await collection.updateOne(
-        { _id: new ObjectId(userId) },
-        {
-          $set: {
-            name,
-            parents: {
-              firstTime: firstTime,
-              employmentStatus: employmentStatus,
-              challenges: challenges
-            },
-            child: {
-              gender: childGender,
-              condition: childCondition
+      if (existingUser) {
+        const updateResult = await collection.updateOne(
+          { _id: existingUser._id },
+          {
+            $set: {
+              name,
+              parents: {
+                firstTime,
+                employmentStatus,
+                challenges
+              },
+              child: {
+                gender: childGender,
+                condition: childCondition
+              }
             }
           }
+        );
+  
+        if (updateResult.modifiedCount === 1) {
+          return res.redirect('/profile.html');
+        } else {
+          return res.status(400).send("No changes made to the user profile");
         }
-      );
-  
-      console.log("User profile updated for ID:", userId);
-      res.redirect('/profile.html'); // Redirect to the profile page after submission
-  
+      } else {
+        return res.status(404).send("User not found");
+      }
     } catch (error) {
-      console.error("Failed to update user profile", error);
-      res.status(500).send("Error updating user profile");
+      return res.status(500).send("Error updating user profile");
     }
   });
 

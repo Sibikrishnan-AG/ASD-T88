@@ -23,6 +23,8 @@ function formatMessage(message) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     const chatSessions = JSON.parse(localStorage.getItem('chatSessions'));
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
 
     if (!chatSessions || chatSessions.length === 0) {
         document.getElementById('summary-content').innerHTML = '<p>No chat history available.</p>';
@@ -31,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const summaryContainer = document.getElementById('summary-content');
 
-    // Generate all summaries at once to avoid the abrupt loading experience
     for (let i = 0; i < chatSessions.length; i++) {
         const chatHistory = chatSessions[i];
 
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ chatHistory })
+                body: JSON.stringify({ chatHistory, userId })
             });
 
             const data = await response.json();
@@ -49,7 +50,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const summaryBlock = document.createElement('div');
             summaryBlock.classList.add('summary-block');
 
-            // Use formatMessage to apply consistent styling
             summaryBlock.innerHTML = `
                 <h3>Summary ${i + 1}</h3>
                 <h4>Problem</h4>
@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
 
 // Handle the Home Page button click
 document.getElementById('back-home-button').addEventListener('click', () => {

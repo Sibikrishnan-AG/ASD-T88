@@ -176,6 +176,9 @@
         async function createProfile(event) {
             event.preventDefault(); // Prevent the default form submission
         
+
+            const params = new URLSearchParams(window.location.search);
+            const userId = params.get('userId');
             const name = document.getElementById('nameInput').value.trim();
             const employmentStatus = document.querySelector('input[name="status"]:checked')?.value;
             const firstTime = document.querySelector('input[name="option"]:checked')?.value === 'yes';
@@ -184,6 +187,7 @@
             const childCondition = document.querySelector('input[name="child-condition"]:checked')?.value;
         
             const updatedProfile = {
+                userId,
                 name,
                 employmentStatus,
                 firstTime,

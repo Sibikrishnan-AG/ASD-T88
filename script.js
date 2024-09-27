@@ -1,5 +1,5 @@
 // ==========================================================================================
-// pdpa.html
+// DO NOT DELETE - pdpa.html
 function toggleButtonVisibility() {
   var checkBox = document.getElementById("myCheckbox");
   var continueButton = document.getElementById("continueButton");
@@ -12,7 +12,6 @@ function toggleButtonVisibility() {
 }
 
 function continueAction() {
-  // Perform the action for continuing, such as navigating to another page
   window.location.href = "account.html";
 }
 // ==========================================================================================
@@ -78,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function() {
           }
       });
   });
-
-  // Make the Done button visible only after clicking on any imageBubble in .challenges
+//   /////////////////////////////////////
+ // Make the Done button visible only after clicking on any imageBubble in .challenges
   var challengeBubbles = document.querySelectorAll('.challenges input[type="checkbox"]');
   var doneButton = document.querySelector('.done-button');
 
@@ -218,8 +217,6 @@ doneButton.addEventListener('click', function () {
 
 });
 
-// ==========================================================================================
-// home.html
 // Post transition to home.html
 document.addEventListener("DOMContentLoaded", function() {
   var params = new URLSearchParams(window.location.search);
@@ -244,23 +241,24 @@ document.addEventListener("DOMContentLoaded", function() {
           const response = await fetch('/api/data');
           data = await response.json();
 
-          // Now that the data is fetched, you can use it to find the item
           const item = data.find(d => d.name === userName);
           
-          console.log(data); // Debugging: Check if data is fetched correctly
+          console.log(data);
 
-          // Use the fetched data (item) in your profile button event listener
           if (item) {
               profileButton.addEventListener('click', function () {
                   window.location.href = 'profile.html?userId=' + encodeURIComponent(item._id);
               });
-          }
+              chatbotButton.addEventListener('click', function () {
+                window.location.href = 'chatbot.html?userId=' + encodeURIComponent(item._id);
+            });
+          } 
       } catch (error) {
           console.error('Error fetching data:', error);
       }
   }
 
-  profileData();  // Call the async function to fetch data
+  profileData();
 
   // Show loading screen initially
   loadingScreen.style.display = 'flex';
@@ -301,16 +299,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
       }, 1000); // Wait for the fade-out transition to complete
   }, 5000); // Keep the loading screen for 5 seconds
-  
-//     profileButton.addEventListener('click', function () {
-//         window.location.href = 'profile.html?userId=' + encodeURIComponent(item._id);
-//   });
 
 });
 
+
+
 // ===========================================================================================
 // account.html & newAccount.html
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 
   // Function to toggle password visibility
   function togglePasswordVisibility(toggleIcon, passwordFieldId) {
@@ -335,10 +331,11 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Pre-set accounts for development
-  // const presetAccounts = [
-  //     { email: "john@gmail.com", password: "password123", name: "John" },
-  //     { email: "eithechatbot@gmail.com", password: "mypassword", name: "Jane" },
-  // ];
+  const presetAccounts = [
+      { email: "john@gmail.com", password: "password123", name: "John" },
+      { email: "eithechatbot@gmail.com", password: "mypassword", name: "Jane" },
+    // Add more accounts as needed
+  ];
 
   const loginForm = document.getElementById("loginForm");
   let data = [];
@@ -356,24 +353,30 @@ document.addEventListener("DOMContentLoaded", function() {
   accountData();
 
   if (loginForm) {
-      loginForm.addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent the default form submission
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
-          const email = document.getElementById("loginEmail").value;
-          const password = document.getElementById("loginPassword").value;
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
 
-          // Simple client-side validation or fake login (could be expanded)
-          const user = data.find(
-              (account) => account.email === email && account.password === password
-          );
+        // Simple client-side validation or fake login (could be expanded)
+        const user = data.find(
+            (account) => account.email === email && account.password === password
+        );
 
-          if (user) {
-              window.location.href = `home.html?name=${encodeURIComponent(user.name)}`;// Redirect to the home page or dashboard
-          } else {
-              loginError.innerHTML = "Invalid email or password.<br>Please try again.";
-          }
-      });
-  }
+        if (user) {
+
+          if (!user.name) {
+            window.location.href = `createProfile.html?userId=${encodeURIComponent(user._id)}`;
+          return
+        };
+
+        window.location.href = `home.html?name=${encodeURIComponent(user.name)}`;// Redirect to the home page or dashboard
+        } else {
+            loginError.innerHTML = "Invalid email or password.<br>Please try again.";
+        }
+    });
+}
 
   // Handle sign-up form submission
   const signUpForm = document.querySelector('form[action="/submit"]');
@@ -401,7 +404,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // ===========================================================================================
 // profile.html
-  document.addEventListener('DOMContentLoaded', function() {
+
+document.addEventListener('DOMContentLoaded', function() {
   
   // Regular expression to validate email format
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -426,7 +430,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const tabElements = document.querySelectorAll('.tab');
   tabElements.forEach(tab => tab.addEventListener('click', switchTab));
 
-  // Fetch and populate user data (same as before)
   async function fetchData() {
     try {
       const params = new URLSearchParams(window.location.search);
@@ -438,7 +441,6 @@ document.addEventListener("DOMContentLoaded", function() {
       const item = data.find(d => d._id === userId);
 
       if (item) {
-        // Populate the fields with the user's data
         document.getElementById('name').value = item.name || '';
         document.getElementById('email').value = item.email || '';
         document.getElementById('employmentStatus').value = item.parents.employmentStatus || '';
@@ -482,166 +484,193 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Call fetchData to populate the data
   fetchData();
 
-  // Fields for Display Name, Email, and their pen icon functionality
-  const textFields = [
-    {
-      inputField: document.getElementById('name'),
-      penIcon: document.getElementById('editDisplayName')
-    },
-    {
-      inputField: document.getElementById('email'),
-      penIcon: document.getElementById('editEmail'),
-      validate: function (value) {
-        // Check if email format is valid
-        return emailRegex.test(value);
+ // Enable editing for Display Name and Email on pen click
+ const textFields = [
+  {
+    inputField: document.getElementById('name'),
+    penIcon: document.getElementById('editDisplayName')
+  },
+  {
+    inputField: document.getElementById('email'),
+    penIcon: document.getElementById('editEmail'),
+    validate: function (value) {
+      // Check if email format is valid
+      return emailRegex.test(value);
+    }
+  }
+];
+
+textFields.forEach(field => {
+  field.penIcon.addEventListener('click', function() {
+    field.penIcon.style.display = 'none'; // Hide pen icon
+    field.inputField.readOnly = false; // Make field editable
+    field.inputField.classList.add('editable'); // Add class for styling
+    field.inputField.focus(); // Focus on the field for immediate typing
+  });
+
+  // Handle clicking outside the input field to prevent leaving empty
+  document.addEventListener('click', function(event) {
+    if (!field.inputField.contains(event.target) && !field.penIcon.contains(event.target)) {
+      const value = field.inputField.value.trim();
+
+      if (!value) {
+        alert(`${field.inputField.id === 'name' ? 'Display Name' : 'Email'} cannot be left blank.`); // Show error message
+        field.inputField.focus(); // Focus again on the field, don't let them leave
+        field.inputField.readOnly = false; // Keep the field editable
+      } else if (field.inputField.id === 'email' && !field.validate(value)) {
+        alert('Please enter a valid email address.');
+        field.inputField.focus(); // Focus again on the field, don't let them leave
+        field.inputField.readOnly = false; // Keep the field editable
+      } else {
+        field.inputField.readOnly = true; // Make field static again if valid
+        field.penIcon.style.display = 'block'; // Show pen icon again
+        field.inputField.classList.remove('editable'); // Remove editable style
       }
     }
+  });
+
+  // Prevent document click handler from triggering immediately when clicked inside the field
+  field.inputField.addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevent event propagation so they can keep typing
+  });
+});
+
+// Function to handle dropdown display inside the input field
+function enableDropdownEditing(penIcon, inputField, dropdown) {
+  penIcon.addEventListener('click', function() {
+    penIcon.style.display = 'none'; // Hide the pen icon
+    inputField.style.display = 'none'; // Hide the input field
+    dropdown.style.display = 'block'; // Show dropdown
+
+    dropdown.addEventListener('change', function() {
+      inputField.value = dropdown.value; // Set the input field value from dropdown
+      dropdown.style.display = 'none'; // Hide dropdown after selection
+      inputField.style.display = 'block'; // Show input field again with the selected value
+      penIcon.style.display = 'block'; // Show pen icon again
+    });
+  });
+}
+
+// Handle Employment Status, Experience as Caregiver, Gender, and Condition dropdowns
+const employmentDropdown = document.getElementById('employmentDropdown');
+const employmentInput = document.getElementById('employmentStatus');
+const employmentPen = document.getElementById('editEmployment');
+
+const experienceDropdown = document.getElementById('experienceDropdown');
+const experienceInput = document.getElementById('firstTime');
+const experiencePen = document.getElementById('editExperience');
+
+const genderDropdown = document.getElementById('genderDropdown');
+const genderInput = document.getElementById('childGender');
+const genderPen = document.getElementById('editGender');
+
+const conditionDropdown = document.getElementById('conditionDropdown');
+const conditionInput = document.getElementById('childCondition');
+const conditionPen = document.getElementById('editCondition');
+
+enableDropdownEditing(employmentPen, employmentInput, employmentDropdown);
+enableDropdownEditing(experiencePen, experienceInput, experienceDropdown);
+enableDropdownEditing(genderPen, genderInput, genderDropdown);
+enableDropdownEditing(conditionPen, conditionInput, conditionDropdown);
+
+// Handle the Challenges pen icon click
+const challengesPen = document.getElementById('editChallenges');
+const challengesPopup = document.getElementById('challengesPopup');
+const doneButton = document.getElementById('saveChlgsButton');
+const overlay = document.querySelector('.overlay');
+const popupChallengesContainer = document.getElementById('popupChallengesContainer');
+
+// Function to populate the challenges pop-up
+function populateChallengesInPopup() {
+  popupChallengesContainer.innerHTML = ''; // Clear previous options
+  const challenges = [
+    { value: 'Emotional & Mental Distress', label: 'Emotional & Mental Distress', img: 'mental.png' },
+    { value: 'Parenthood', label: 'Parenthood', img: 'parenthood.png' },
+    { value: 'Lack Of Accessible Support', label: 'Lack of Accessible Support', img: 'support.png' },
+    { value: 'Social Discrimination & Isolation', label: 'Social Discrimination & Isolation', img: 'social.png' }
   ];
 
-  // Enable editing for Display Name and Email on pen click
-  textFields.forEach(field => {
-    field.penIcon.addEventListener('click', function() {
-      field.penIcon.style.display = 'none'; // Hide pen icon
-      field.inputField.readOnly = false; // Make field editable
-      field.inputField.classList.add('editable'); // Add class for styling
-      field.inputField.focus(); // Focus on the field for immediate typing
+  challenges.forEach(challenge => {
+    const label = document.createElement('label');
+    const img = document.createElement('img');
+    img.src = "images/" + challenge.img;
+    img.alt = challenge.label;
+    img.classList.add('challenge-icon');
+    label.appendChild(img);
+    label.appendChild(document.createTextNode(challenge.label));
+    label.dataset.value = challenge.value;
+
+    // Click event for challenge selection
+    label.addEventListener('click', function() {
+      label.classList.toggle('selected'); // Toggle selection state
+      doneButton.style.display = 'block'; // Show Done button once selected
     });
 
-    // Handle clicking outside the input field to prevent leaving empty
-    document.addEventListener('click', function(event) {
-      if (!field.inputField.contains(event.target) && !field.penIcon.contains(event.target)) {
-        const value = field.inputField.value.trim();
-
-        if (!value) {
-          alert(`${field.inputField.id === 'name' ? 'Display Name' : 'Email'} cannot be left blank.`); // Show error message
-          field.inputField.focus(); // Focus again on the field, don't let them leave
-          field.inputField.readOnly = false; // Keep the field editable
-        } else if (field.inputField.id === 'email' && !field.validate(value)) {
-          alert('Please enter a valid email address.');
-          field.inputField.focus(); // Focus again on the field, don't let them leave
-          field.inputField.readOnly = false; // Keep the field editable
-        } else {
-          field.inputField.readOnly = true; // Make field static again if valid
-          field.penIcon.style.display = 'block'; // Show pen icon again
-          field.inputField.classList.remove('editable'); // Remove editable style
-        }
-      }
-    });
-
-    // Prevent document click handler from triggering immediately when clicked inside the field
-    field.inputField.addEventListener('click', function(event) {
-      event.stopPropagation(); // Prevent event propagation so they can keep typing
-    });
+    popupChallengesContainer.appendChild(label);
   });
+}
 
-  // Handle the Challenges pen icon click
-  const challengesPen = document.getElementById('editChallenges');
-  const challengesPopup = document.getElementById('challengesPopup');
-  const doneButton = document.getElementById('saveChlgsButton');
-  const overlay = document.querySelector('.overlay');
-  const popupChallengesContainer = document.getElementById('popupChallengesContainer');
+// Show challenges pop-up when the pen is clicked
+challengesPen.addEventListener('click', function() {
+  challengesPen.style.display = 'none'; // Hide the pen icon
+  overlay.style.display = 'block'; // Show overlay
+  challengesPopup.style.display = 'block'; // Show the pop-up box
+  populateChallengesInPopup(); // Populate the challenges
+});
 
-  // Function to populate the challenges pop-up
-  function populateChallengesInPopup() {
-    popupChallengesContainer.innerHTML = ''; // Clear previous options
-    const challenges = [
-      { value: 'Emotional & Mental Distress', label: 'Emotional & Mental Distress', img: 'mental.png' },
-      { value: 'Parenthood', label: 'Parenthood', img: 'parenthood.png' },
-      { value: 'Lack Of Accessible Support', label: 'Lack of Accessible Support', img: 'support.png' },
-      { value: 'Social Discrimination & Isolation', label: 'Social Discrimination & Isolation', img: 'social.png' }
-    ];
+// Close the pop-up and display selected challenges when Done is clicked
+doneButton.addEventListener('click', function() {
+  challengesPen.style.display = 'block'; // Show pen icon again
+  challengesPopup.style.display = 'none'; // Hide the pop-up
+  overlay.style.display = 'none'; // Hide the overlay
 
-    challenges.forEach(challenge => {
-      const label = document.createElement('label');
-      const img = document.createElement('img');
-      img.src = "images/" + challenge.img;
-      img.alt = challenge.label;
-      img.classList.add('challenge-icon');
-      label.appendChild(img);
-      label.appendChild(document.createTextNode(challenge.label));
-      label.dataset.value = challenge.value;
+  // Collect selected challenges
+  const selectedChallenges = Array.from(document.querySelectorAll('.popup-box .selected'))
+    .map(label => label.dataset.value);
 
-      // Click event for challenge selection
-      label.addEventListener('click', function() {
-        label.classList.toggle('selected'); // Toggle selection state
-        doneButton.style.display = 'block'; // Show Done button once selected
-      });
-
-      popupChallengesContainer.appendChild(label);
-    });
+  // If no new challenges are selected, keep the previous selections
+  if (selectedChallenges.length === 0) {
+    selectedChallenges.push(...previousSelectedChallenges);
   }
 
-  // Show challenges pop-up when the pen is clicked
-  challengesPen.addEventListener('click', function() {
-    challengesPen.style.display = 'none'; // Hide the pen icon
-    overlay.style.display = 'block'; // Show overlay
-    challengesPopup.style.display = 'block'; // Show the pop-up box
-    populateChallengesInPopup(); // Populate the challenges
-  });
+  // Update the challenges container in the profile view with the selected challenges
+  const challengesContainer = document.getElementById('challengesContainer');
+  challengesContainer.innerHTML = ''; // Clear existing challenges
 
-  // Close the pop-up and display selected challenges when Done is clicked
-  doneButton.addEventListener('click', function() {
-    challengesPen.style.display = 'block'; // Show pen icon again
-    challengesPopup.style.display = 'none'; // Hide the pop-up
-    overlay.style.display = 'none'; // Hide the overlay
+  // Iterate through the selected challenges and display them
+  const challenges = [
+    { value: 'Emotional & Mental Distress', label: 'Emotional & Mental Distress', img: 'mental.png' },
+    { value: 'Parenthood', label: 'Parenthood', img: 'parenthood.png' },
+    { value: 'Lack Of Accessible Support', label: 'Lack of Accessible Support', img: 'support.png' },
+    { value: 'Social Discrimination & Isolation', label: 'Social Discrimination & Isolation', img: 'social.png' }
+  ];
 
-    // Collect selected challenges
-    const selectedChallenges = Array.from(document.querySelectorAll('.popup-box .selected'))
-      .map(label => label.dataset.value);
+  selectedChallenges.forEach(selectedChallenge => {
+    const challenge = challenges.find(ch => ch.value === selectedChallenge);
+    if (challenge) {
+      const label = document.createElement('label');
+      const challengeImg = document.createElement('img');
+      challengeImg.src = "images/" + challenge.img;
+      challengeImg.alt = challenge.label;
+      challengeImg.className = 'challenge-icon';
 
-    // If no new challenges are selected, keep the previous selections
-    if (selectedChallenges.length === 0) {
-      selectedChallenges.push(...previousSelectedChallenges);
+      label.appendChild(challengeImg);
+      label.appendChild(document.createTextNode(challenge.label));
+      challengesContainer.appendChild(label);
     }
-
-    // Update the challenges container in the profile view with the selected challenges
-    const challengesContainer = document.getElementById('challengesContainer');
-    challengesContainer.innerHTML = ''; // Clear existing challenges
-
-    // Iterate through the selected challenges and display them
-    const challenges = [
-      { value: 'Emotional & Mental Distress', label: 'Emotional & Mental Distress', img: 'mental.png' },
-      { value: 'Parenthood', label: 'Parenthood', img: 'parenthood.png' },
-      { value: 'Lack Of Accessible Support', label: 'Lack of Accessible Support', img: 'support.png' },
-      { value: 'Social Discrimination & Isolation', label: 'Social Discrimination & Isolation', img: 'social.png' }
-    ];
-
-    selectedChallenges.forEach(selectedChallenge => {
-      const challenge = challenges.find(ch => ch.value === selectedChallenge);
-      if (challenge) {
-        const label = document.createElement('label');
-        const challengeImg = document.createElement('img');
-        challengeImg.src = "images/" + challenge.img;
-        challengeImg.alt = challenge.label;
-        challengeImg.className = 'challenge-icon';
-
-        label.appendChild(challengeImg);
-        label.appendChild(document.createTextNode(challenge.label));
-        challengesContainer.appendChild(label);
-      }
-    });
-
-    // Update previousSelectedChallenges to match the latest selections
-    previousSelectedChallenges = [...selectedChallenges];
-
-    // Log the selected challenges (for debugging or sending to server)
-    console.log('Selected Challenges:', selectedChallenges);
   });
 
-  // Close pop-up if clicked outside
-  overlay.addEventListener('click', function() {
-    challengesPopup.style.display = 'none';
-    overlay.style.display = 'none';
-    challengesPen.style.display = 'block';
-  });
+  // Update previousSelectedChallenges to match the latest selections
+  previousSelectedChallenges = [...selectedChallenges];
+
+  // Log the selected challenges (for debugging or sending to server)
+  console.log('Selected Challenges:', selectedChallenges);
+});
 
   // Save profile changes with validation
-  // async function saveProfile(userId, updatedProfile) {
       async function saveProfile(event) {
-          // Prevent form submission and redirection
           event.preventDefault();
         
           const name = document.getElementById('name').value.trim();
@@ -652,6 +681,11 @@ document.addEventListener("DOMContentLoaded", function() {
           const childCondition = document.getElementById('childCondition').value;
           const params = new URLSearchParams(window.location.search);
           const userId = params.get('userId');
+    
+          const response = await fetch('/api/data');
+          const data = await response.json();
+
+          const currentUser = data.find(d => d._id === userId);
         
           // Ensure Display Name and Email are not left blank
           if (!name) {
@@ -662,6 +696,12 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Please enter a valid email address.'); // Show error message
             return; // Stop further execution, let the user fix the error
           }
+
+          // Check if email was changed and already exists in the database
+          if (currentUser.email !== email && data.find(d => d.email === email)) {
+            alert('Email already exists in the database!');
+            return;
+          }
         
           const updatedProfile = {
             userId,
@@ -671,7 +711,7 @@ document.addEventListener("DOMContentLoaded", function() {
             firstTime,
             childGender,
             childCondition,
-            challenges: previousSelectedChallenges, // Include challenges for saving
+            challenges: previousSelectedChallenges, 
           };
         
           console.log(updatedProfile);
@@ -699,40 +739,55 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Save password changes with validation
   async function savePassword(event) {
-    // Prevent form submission and redirection
     event.preventDefault();
 
     const newPassword = document.getElementById('newPassword').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
     const oldPassword = document.getElementById('oldPassword').value.trim();
     const params = new URLSearchParams(window.location.search);
     const userId = params.get('userId');
 
-    const updatedProfile = {
-      userId,
-      oldPassword,
-      newPassword
-    };
+    const response = await fetch('/api/data');
+    const data = await response.json();
 
-    try {
-      const response = await fetch('/changePassword', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedProfile)
-      });
+    const item = data.find(d => d._id === userId);
 
-      if (response.ok) {
-        showSuccessPopup(); // Show success if save is successful
-      } else {
-        const errorMessage = await response.text();
-        console.error('Error saving profile:', errorMessage);
+
+    if (item.password != oldPassword) {
+      alert('Old passwords do not match!');
+    } 
+    else if (newPassword != confirmPassword) {
+      alert('New passwords do not match!');
+    } 
+    else {
+
+      const updatedProfile = {
+        userId,
+        oldPassword,
+        newPassword
+      };
+
+      try {
+        const response = await fetch('/changePassword', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedProfile)
+        });
+
+        if (response.ok) {
+          showSuccessPopup(); // Show success if save is successful
+        } else {
+          const errorMessage = await response.text();
+          console.error('Error saving profile:', errorMessage);
+          alert('There was an issue updating your profile. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error saving profile:', error);
         alert('There was an issue updating your profile. Please try again.');
       }
-    } catch (error) {
-      console.error('Error saving profile:', error);
-      alert('There was an issue updating your profile. Please try again.');
     }
-  }
-
+    }
+    
   // Attach the saveProfile function to the form's submit event
   document.getElementById('saveChangesProfile').addEventListener('click', saveProfile);
 
@@ -741,9 +796,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Back button handler
   function handleBackButtonClick() {
-    const userName = document.getElementById('name').value;
     sessionStorage.setItem('skipAnimation', 'true');
-    window.location.href = `home.html?name=${encodeURIComponent(userName)}`;
+    window.history.back();
   }
 
   document.getElementById('backButtonProfile').addEventListener('click', handleBackButtonClick);

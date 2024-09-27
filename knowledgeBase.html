@@ -49,13 +49,8 @@
         // Check if the back button exists
         var backButton = document.getElementById('backButtonKB');
         if (backButton) {
-            // Ensure that the back button redirects with the name parameter
             backButton.addEventListener('click', function() {
-                if (userName) {
-                    window.location.href = 'home.html?name=' + encodeURIComponent(userName);
-                } else {
-                    window.location.href = 'home.html';  // Fallback in case the name is missing
-                }
+                window.history.back();
             });
         } else {
             console.error("Back button not found!");  // Error logging if button is missing

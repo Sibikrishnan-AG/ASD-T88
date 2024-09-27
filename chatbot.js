@@ -68,22 +68,28 @@ function formatMessage(message) {
 }
 
 // Handle the Summary Page button click
-document.getElementById('summary-page-button').addEventListener('click', () => {
-    // Fetch the existing chat sessions from localStorage
-    let chatSessions = JSON.parse(localStorage.getItem('chatSessions')) || [];
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('userId');
 
-    // Add the current chat history to the sessions array
-    chatSessions.push(chatHistory);
+document.getElementById('summary-page-button').addEventListener('click', async () => {
+    try {
+        const response = await fetch('/api/data');
+        const data = await response.json();
 
-    // Save the updated sessions back to localStorage
-    localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
+        const userItem = data.find(d => d._id === userId);
 
-    // Redirect to the summary page
-    window.location.href = '/summary.html';
-
-    // Clear the current chat history for a new session
-    chatHistory = [];
+        if (userItem) {
+            let chatSessions = JSON.parse(localStorage.getItem('chatSessions')) || [];
+            chatSessions.push(chatHistory);
+            localStorage.setItem('chatSessions', JSON.stringify(chatSessions));
+            window.location.href = 'summary.html?userId=' + encodeURIComponent(userItem._id);
+            chatHistory = [];
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 });
+
 
 // Handle the Home Page button click
 document.getElementById('back-home-button').addEventListener('click', () => {
