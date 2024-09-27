@@ -138,16 +138,5 @@
     <!-- Bootstrap JS and dependencies -->
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
-    <script>
-        document.getElementById('saveChangesProfile').addEventListener('click', function() {
-    var userName = document.getElementById('name').value;
-    localStorage.setItem('userName', userName);  // Save updated user name in localStorage
-});
-document.getElementById('backButtonProfile').addEventListener('click', function() {
-    // Redirect back to home.html, session info is kept in localStorage
-    window.history.back();
-});
-
-    </script>
   </body>
   </html>

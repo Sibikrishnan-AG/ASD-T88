@@ -801,7 +801,7 @@ doneButton.addEventListener('click', function() {
   }
 
   document.getElementById('backButtonProfile').addEventListener('click', handleBackButtonClick);
-  document.getElementById('backButtonAccount').addEventListener('click', handleBackButtonClick);
+  document.getElementById('backButtonPW').addEventListener('click', handleBackButtonClick);
 
   // Show success popup
   function showSuccessPopup() {
